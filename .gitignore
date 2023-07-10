@@ -72,8 +72,19 @@ web_modules/
 # Yarn Integrity file
 .yarn-integrity
 
+.DS_Store
+node_modules
+/build
+/.svelte-kit
+/package
+
 # dotenv environment variable files
 .env
+.env.*
+!.env.example
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
 .env.development.local
 .env.test.local
 .env.production.local
