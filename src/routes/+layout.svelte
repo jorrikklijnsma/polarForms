@@ -1,17 +1,17 @@
 <script>
-    import '../theme/colors.css'
-    import '../theme/general.css'
+	import '../theme/colors.css';
+	import '../theme/general.css';
 </script>
 
 <main>
-    <slot />
+	<slot />
 </main>
 
 <style lang="scss">
-    main {
-        display: grid;
-        place-items: center;
-        background: #222;
-        min-height: 100vh;
-    }
+	main {
+		display: grid;
+		place-items: center;
+		background: #222;
+		min-height: 100vh;
+	}
 </style>
