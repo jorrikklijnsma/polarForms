@@ -120,7 +120,8 @@
 		background-color: #fff;
 		border-radius: 8px;
 		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-		min-width: 300px;
+		min-width: 250px;
+    width: minmax(max-content, min-content);
 		max-width: 90%;
 		margin: 0 auto;
 	}
@@ -144,6 +145,7 @@
 	.answer-options {
 		display: flex;
 		justify-content: space-between;
+    flex-wrap: wrap;
 		gap: 1rem;
 		margin-top: 1rem;
 	}
