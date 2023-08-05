@@ -1,4 +1,4 @@
-import type { Category, Question, QuestionsArray } from "../data/questions";
+import type { Category, Question, QuestionsArray } from '../data/questions';
 
 type CategorizedQuestions = {
 	[key in Category]: Question[];

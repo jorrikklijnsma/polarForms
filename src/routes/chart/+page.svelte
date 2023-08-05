@@ -1,11 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import type { Question, Category } from '../../data/questions';
-	import {
-		questionsStore,
-		categoryColors,
-		answerOptions
-	} from '../../data/questions';
+	import { questionsStore, categoryColors, answerOptions } from '../../data/questions';
 	import { Chart, registerables } from 'chart.js';
 	import { categorizeQuestions } from '../../utils/categorize-questions';
 

@@ -1,11 +1,25 @@
 <script lang="ts">
 	import { questionsStore, answerOptions, categoryColors } from '../../data/questions';
-	import type { QuestionsArray, Question, Category } from '../../data/questions';
+	import type { Question, Category } from '../../data/questions';
 	import { get } from 'svelte/store';
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 
 	let currentQuestionIndex = 0;
 	let currentQuestion: Question | undefined;
+
+	// Create a key to answer value mapping
+	let keyAnswerMap: Record<string, string> = {};
+	answerOptions.forEach((option, index) => {
+		keyAnswerMap[option.text.at(0)!.toString().toLowerCase()] = option.value;
+	});
+
+	// Handle keydown events
+	const handleKeydown = (event: KeyboardEvent) => {
+		const answer = keyAnswerMap[event.key];
+		if (answer) {
+			handleAnswer(answer);
+		}
+	};
 
 	onMount(() => {
 		// On initial load, check if there are any saved questions in local storage
@@ -16,6 +30,14 @@
 
 		// Set the current question
 		currentQuestion = $questionsStore[currentQuestionIndex];
+
+		// Add event listener
+		window.addEventListener('keydown', handleKeydown);
+	});
+
+	// Cleanup on component unmount
+	onDestroy(() => {
+		window.removeEventListener('keydown', handleKeydown);
 	});
 
 	const handleAnswer = (value: string) => {
@@ -42,6 +64,23 @@
 		}
 	};
 
+	function clearAnswers() {
+		// Update the store with the cleared answers
+		questionsStore.update((questions) => {
+			questions.forEach((question) => {
+				question.answer = undefined;
+			});
+
+			// Save to local storage
+			localStorage.setItem('questions', JSON.stringify(questions));
+
+			return [...questions];
+		});
+	}
+
+	// To use clearAnswers, just call the function
+	clearAnswers();
+
 	// Computed property to retrieve the category color
 	$: categoryColor = currentQuestion ? categoryColors[currentQuestion.category as Category] : '';
 </script>
@@ -52,13 +91,16 @@
 		<span class="category-tag" style={`--category-color: ${categoryColor}`}
 			>{currentQuestion.category}</span
 		>
+
 		<div class="answer-options">
-			{#each answerOptions as option}
+			{#each answerOptions as option, index (option.value)}
 				<button
 					on:click={() => handleAnswer(option.value)}
 					disabled={currentQuestion.answer === option.value}
-					style={`--category-color: ${categoryColor}`}>{option.text}</button
+					style={`--category-color: ${categoryColor}`}
 				>
+					<u>{option.text.at(0)}</u>{option.text.slice(1)}
+				</button>
 			{/each}
 		</div>
 	{:else}
@@ -66,6 +108,8 @@
 		<a href="./chart">Go to the chart</a>
 	{/if}
 </div>
+
+<button on:click={clearAnswers}>Clear answers</button>
 
 <style>
 	.question-card {
