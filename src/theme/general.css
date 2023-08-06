@@ -1,19 +1,19 @@
 body {
 	margin: 0;
 	padding: 0;
-
+	
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 * {
 	user-select: none;
 }
+
 html {
 	font-size: 3vw;
 }
 
-
-@media screen and (min-width: 533px) {	
+@media screen and (min-width: 533px) {
 	html {
 		font-size: 16px;
 	}

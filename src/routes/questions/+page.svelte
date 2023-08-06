@@ -121,7 +121,7 @@
 		border-radius: 8px;
 		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 		min-width: 250px;
-    width: minmax(max-content, min-content);
+		width: minmax(max-content, min-content);
 		max-width: 90%;
 		margin: 0 auto;
 	}
@@ -145,7 +145,7 @@
 	.answer-options {
 		display: flex;
 		justify-content: space-between;
-    flex-wrap: wrap;
+		flex-wrap: wrap;
 		gap: 1rem;
 		margin-top: 1rem;
 	}
