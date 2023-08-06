@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { Category } from '../../data/questions';
+	import type { Category, Question } from '../../data/questions';
 	import { questionsStore, categoryColors, answerOptions } from '../../data/questions';
 	import { Chart, registerables } from 'chart.js';
 	import { categorizeQuestions } from '../../utils/categorize-questions';
@@ -16,27 +16,33 @@
 			return;
 		}
 
+		const countAnswers = (questions: Question[]): Record<string, number> => {
+			const counts: Record<string, number> = {};
+
+			questions.forEach((question) => {
+				const answer = question.answer || '-1';
+				counts[answer] = (counts[answer] || 0) + 1;
+			});
+
+			return counts;
+		};
+
 		const questionsPerCategory = categorizeQuestions($questionsStore);
 
-		// Calculate the number of questions for each category
-		const questionCountsPerCategory: Record<string, number> = {};
-		Object.keys(questionsPerCategory).forEach((category) => {
-			questionCountsPerCategory[category] = questionsPerCategory[category as Category].length;
+		const datasets = Object.keys(questionsPerCategory).map((category) => {
+			const answerCounts = countAnswers(questionsPerCategory[category as Category]);
+
+			// Get the counts in the order of answerOptions
+			const data = answerOptions.map((option) => answerCounts[option.value] || 0);
+
+			return {
+				label: category,
+				data: data,
+				backgroundColor: categoryColors[category as Category]
+			};
 		});
 
-		const datasets = Object.keys(questionsPerCategory).map((category, index) => ({
-			label: category,
-			data: questionsPerCategory[category as Category].map((question) =>
-				parseInt(question.answer || '0')
-			),
-			backgroundColor: categoryColors[category as Category]
-		}));
-
-		// Update the labels to include the count
-		const labels = answerOptions.map((option) => {
-			const count = questionCountsPerCategory[option.text];
-			return `${option.text} (${count || 0} questions)`;
-		});
+		const labels = answerOptions.map((option) => option.text);
 
 		const data = {
 			labels: labels,
