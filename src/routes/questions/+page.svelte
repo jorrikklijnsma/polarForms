@@ -3,6 +3,7 @@
 	import type { Question, Category } from '../../data/questions';
 	import { get } from 'svelte/store';
 	import { onMount, onDestroy } from 'svelte';
+	import { clearAnswers } from '../../utils/clear-answers';
 
 	let currentQuestionIndex = 0;
 	let currentQuestion: Question | undefined;
@@ -63,20 +64,6 @@
 			currentQuestion = unansweredQuestions[0];
 		}
 	};
-
-	function clearAnswers() {
-		// Update the store with the cleared answers
-		questionsStore.update((questions) => {
-			questions.forEach((question) => {
-				question.answer = undefined;
-			});
-
-			// Save to local storage
-			localStorage.setItem('questions', JSON.stringify(questions));
-
-			return [...questions];
-		});
-	}
 
 	// Computed property to retrieve the category color
 	$: categoryColor = currentQuestion ? categoryColors[currentQuestion.category as Category] : '';

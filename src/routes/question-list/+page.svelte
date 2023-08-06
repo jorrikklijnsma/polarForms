@@ -2,6 +2,7 @@
 	import { questionsStore, answerOptions, categoryColors } from '../../data/questions';
 	import type { Question, Category } from '../../data/questions';
 	import { onMount, onDestroy } from 'svelte';
+	import { clearAnswers } from '../../utils/clear-answers';
 
 	let selectedQuestion: Question | undefined = undefined;
 	let isModalOpen: boolean = false;
@@ -48,20 +49,6 @@
 			});
 		}
 	};
-
-	function clearAnswers() {
-		// Update the store with the cleared answers
-		questionsStore.update((questions) => {
-			questions.forEach((question) => {
-				question.answer = undefined;
-			});
-
-			// Save to local storage
-			localStorage.setItem('questions', JSON.stringify(questions));
-
-			return [...questions];
-		});
-	}
 
 	onMount(() => {
 		// On initial load, check if there are any saved questions in local storage
