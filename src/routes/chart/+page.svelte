@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { Question, Category } from '../../data/questions';
+	import type { Category } from '../../data/questions';
 	import { questionsStore, categoryColors, answerOptions } from '../../data/questions';
 	import { Chart, registerables } from 'chart.js';
 	import { categorizeQuestions } from '../../utils/categorize-questions';
@@ -18,8 +18,11 @@
 
 		const questionsPerCategory = categorizeQuestions($questionsStore);
 
-		console.log(questionsPerCategory);
-		console.log($questionsStore);
+		// Calculate the number of questions for each category
+		const questionCountsPerCategory: Record<string, number> = {};
+		Object.keys(questionsPerCategory).forEach((category) => {
+			questionCountsPerCategory[category] = questionsPerCategory[category as Category].length;
+		});
 
 		const datasets = Object.keys(questionsPerCategory).map((category, index) => ({
 			label: category,
@@ -29,8 +32,14 @@
 			backgroundColor: categoryColors[category as Category]
 		}));
 
+		// Update the labels to include the count
+		const labels = answerOptions.map((option) => {
+			const count = questionCountsPerCategory[option.text];
+			return `${option.text} (${count || 0} questions)`;
+		});
+
 		const data = {
-			labels: answerOptions.map((option) => option.text),
+			labels: labels,
 			datasets: datasets
 		};
 
@@ -38,6 +47,7 @@
 			type: 'bar',
 			data: data,
 			options: {
+				responsive: true,
 				scales: {
 					y: {
 						beginAtZero: true
@@ -48,4 +58,13 @@
 	});
 </script>
 
-<canvas bind:this={chartContainer} />
+<div class="graph-wrapper">
+	<canvas bind:this={chartContainer} />
+</div>
+
+<style lang="scss">
+	.graph-wrapper {
+		width: clamp(300px, 80vw, 1440px);
+		height: auto;
+	}
+</style>

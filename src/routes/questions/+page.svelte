@@ -78,9 +78,6 @@
 		});
 	}
 
-	// To use clearAnswers, just call the function
-	clearAnswers();
-
 	// Computed property to retrieve the category color
 	$: categoryColor = currentQuestion ? categoryColors[currentQuestion.category as Category] : '';
 </script>

@@ -26,24 +26,24 @@
 		nav {
 			ul {
 				display: flex;
-        flex-wrap: wrap;
+				flex-wrap: wrap;
 				list-style: none;
 				gap: 2rem 1rem;
 
 				li {
-          a {
-            background: var(--quinacridone-magenta);
-            text-align: center;
-            border-radius: 0.25rem;
+					a {
+						background: var(--quinacridone-magenta);
+						text-align: center;
+						border-radius: 0.25rem;
 						color: #fff;
 						text-decoration: none;
 						font-size: 1.25rem;
 						padding: 0.5rem 1rem;
 						word-break: keep-all;
-            
-            &:hover {
-              background: var(--raspberry);
-            }
+
+						&:hover {
+							background: var(--raspberry);
+						}
 					}
 				}
 			}
