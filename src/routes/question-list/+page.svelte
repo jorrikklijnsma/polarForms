@@ -125,15 +125,21 @@
 		padding: 0;
 
 		li {
-			background: #ccc;
+			background: #fff;
 			padding: 10px;
 			cursor: pointer;
-			border-bottom: 1px solid #ccc;
+			box-shadow: 0 3px 0 var(--category-color);
 			font-size: 1rem;
 			margin-block-end: 1.5rem;
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
+			transition: box-shadow 0.1s ease-in-out, transform 0.1s ease-in-out;
+
+			&:hover {
+				box-shadow: 0 0 10px var(--category-color);
+				transform: scale(1.01);
+			}
 
 			button {
 				padding: 0.5rem 1rem;
@@ -188,6 +194,22 @@
 					cursor: not-allowed;
 				}
 			}
+		}
+	}
+
+	button {
+		margin-top: 2rem;
+		padding: 1.5rem 3rem;
+		font-size: 2rem;
+		border-radius: 4px;
+		border: none;
+		color: #fff;
+		background-color: rgba(255, 255, 255, 0.1);
+		cursor: pointer;
+		transition: background-color 0.1s ease-in-out;
+
+		&:hover {
+			background-color: rgba(255, 255, 255, 0.2);
 		}
 	}
 </style>
