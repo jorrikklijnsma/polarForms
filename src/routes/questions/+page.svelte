@@ -9,7 +9,7 @@
 	let currentQuestion: Question | undefined;
 
 	// Create a key to answer value mapping
-	let keyAnswerMap: Record<string, string> = {};
+	let keyAnswerMap: Record<string, number> = {};
 	answerOptions.forEach((option, index) => {
 		keyAnswerMap[option.text.at(0)!.toString().toLowerCase()] = option.value;
 	});
@@ -41,7 +41,7 @@
 		window.removeEventListener('keydown', handleKeydown);
 	});
 
-	const handleAnswer = (value: string) => {
+	const handleAnswer = (value: number) => {
 		if (currentQuestion) {
 			currentQuestion.answer = value;
 

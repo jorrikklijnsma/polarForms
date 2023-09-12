@@ -8,7 +8,7 @@
 	let isModalOpen: boolean = false;
 
 	// Create a key to answer value mapping
-	let keyAnswerMap: Record<string, string> = {};
+	let keyAnswerMap: Record<string, number> = {};
 	answerOptions.forEach((option, index) => {
 		keyAnswerMap[option.text.at(0)!.toString().toLowerCase()] = option.value;
 	});
@@ -37,7 +37,7 @@
 		}
 	};
 
-	const handleAnswer = (value: string) => {
+	const handleAnswer = (value: number) => {
 		if (selectedQuestion) {
 			selectedQuestion.answer = value;
 
