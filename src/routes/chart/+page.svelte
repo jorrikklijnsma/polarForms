@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { Category, Question } from '../../data/questions';
-	import { questionsStore, categoryColors, answerOptions } from '../../data/questions';
-	import { Chart, registerables } from 'chart.js';
+	import type { Question, Category } from '../../data/questions';
+	import { questionsStore, categoryColors, categoryColorsTransparent } from '../../data/questions';
+	import { Chart, registerables} from 'chart.js';	
+	import type { ChartData, ChartConfiguration } from 'chart.js';
 	import { categorizeQuestions } from '../../utils/categorize-questions';
 
-	Chart.register(...registerables); // Required for Chart.js v3+
+	Chart.register(...registerables);
 
 	let chartContainer: HTMLCanvasElement;
 
@@ -16,51 +17,60 @@
 			return;
 		}
 
-		const countAnswers = (questions: Question[]): Record<string, number> => {
-			const counts: Record<string, number> = {};
-
-			questions.forEach((question) => {
-				const answer = question.answer || '-1';
-				counts[answer] = (counts[answer] || 0) + 1;
-			});
-
-			return counts;
+		const totalWeightForCategory = (questions: Question[]): number => {
+			console.log(questions);
+			return questions.reduce((total, question) => {
+				const weight = question.answer || 0;
+				return total + weight;
+			}, 0);
 		};
 
 		const questionsPerCategory = categorizeQuestions($questionsStore);
+		console.log(questionsPerCategory);
+		const datasets: ChartData<'polarArea', number[], string> = {
+				datasets: [{
+						data: [],
+						backgroundColor: [],
+						borderColor: [],
 
-		const datasets = Object.keys(questionsPerCategory).map((category) => {
-			const answerCounts = countAnswers(questionsPerCategory[category as Category]);
-
-			// Get the counts in the order of answerOptions
-			const data = answerOptions.map((option) => answerCounts[option.value] || 0);
-
-			return {
-				label: category,
-				data: data,
-				backgroundColor: categoryColors[category as Category]
-			};
-		});
-
-		const labels = answerOptions.map((option) => option.text);
-
-		const data = {
-			labels: labels,
-			datasets: datasets
+				}],
+				labels: []
 		};
 
-		new Chart(ctx, {
-			type: 'bar',
-			data: data,
-			options: {
-				responsive: true,
-				scales: {
-					y: {
-						beginAtZero: true
+		Object.entries(questionsPerCategory).forEach(([categoryKey, categoryQuestions]) => {
+			console.log(categoryKey)
+				const totalWeight = totalWeightForCategory(categoryQuestions);
+				
+				datasets.datasets[0].data.push(totalWeight);
+				datasets.datasets[0].backgroundColor!.push(categoryColorsTransparent[categoryKey as Category].replace('%s', '0.5'));
+				datasets.datasets[0].borderColor!.push(categoryColors[categoryKey as Category]);
+				datasets.labels!.push(`${categoryKey} (${totalWeight})`);
+		});
+
+		const chartConfig: ChartConfiguration<'polarArea', {data:number[], backgroundColor:string[]}[], string> = {
+				type: 'polarArea',
+				data: datasets,
+				options: {
+					responsive: true,
+					scales: {
+							r: {
+									beginAtZero: true
+							}
+					},
+					plugins: {
+							legend: {
+									labels: {
+											color: 'rgb(255, 255, 255)',
+											padding: 20,
+									}
+							}
 					}
 				}
-			}
-		});
+		};
+
+
+new Chart(ctx, chartConfig);
+
 	});
 </script>
 
@@ -70,7 +80,10 @@
 
 <style lang="scss">
 	.graph-wrapper {
+		display: grid;
+		place-items: center;
 		width: clamp(300px, 80vw, 1440px);
+		max-height: 70vh;
 		height: auto;
 	}
 </style>
