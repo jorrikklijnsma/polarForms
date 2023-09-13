@@ -5,11 +5,11 @@
 	import { clearAnswers } from '../../utils/clear-answers';
 
 	let selectedQuestion: Question | undefined = undefined;
-	let isModalOpen: boolean = false;
+	let isModalOpen: Boolean = false;
 
 	// Create a key to answer value mapping
 	let keyAnswerMap: Record<string, number> = {};
-	answerOptions.forEach((option, index) => {
+	answerOptions.forEach((option) => {
 		keyAnswerMap[option.text.at(0)!.toString().toLowerCase()] = option.value;
 	});
 

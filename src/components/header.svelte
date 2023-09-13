@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { questionsStore} from '../data/questions';
+	import { questionsStore } from '../data/questions';
 
 	const exportQuestions = () => {
 		const questions = JSON.stringify($questionsStore);
@@ -27,7 +27,6 @@
 			questionsStore.set(questions);
 		};
 	};
-
 </script>
 
 <header>
@@ -37,7 +36,7 @@
 			<li><a href="/">Home</a></li>
 			<li><a href="/questions">Questions</a></li>
 			<li><a href="/question-list">Question list</a></li>
-			<li><a href="/chart">Chart</a></li>	
+			<li><a href="/chart">Chart</a></li>
 			<li><button on:click={exportQuestions} class="export-button">Export</button></li>
 			<li><button on:click={importQuestions}>Import</button></li>
 		</ul>
@@ -65,7 +64,8 @@
 				gap: 2rem 1rem;
 
 				li {
-					a, button {
+					a,
+					button {
 						display: block;
 						background: var(--quinacridone-magenta);
 						text-align: center;
@@ -96,7 +96,7 @@
 								position: absolute;
 								left: -2.5rem;
 								top: 0;
-								background: rgba(255,255,255,.3);
+								background: rgba(255, 255, 255, 0.3);
 								height: 40px;
 								width: 2px;
 							}
