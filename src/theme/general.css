@@ -18,3 +18,23 @@ html {
 		font-size: 16px;
 	}
 }
+
+button {
+	display: block;
+	background: var(--quinacridone-magenta);
+	text-align: center;
+	border-radius: 0.25rem;
+	color: #fff;
+	text-decoration: none;
+	font-size: 1.25rem;
+	padding: 0.5rem 1rem;
+	word-break: keep-all;
+	position: relative;
+	outline: none;
+	border: none;
+	cursor: pointer;
+
+	&:hover {
+		background: var(--raspberry);
+	}
+}

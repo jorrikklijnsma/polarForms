@@ -2,13 +2,24 @@
 	import { onMount } from 'svelte';
 	import type { Question, Category } from '../../data/questions';
 	import { questionsStore, categoryColors, categoryColorsTransparent } from '../../data/questions';
-	import { Chart, registerables} from 'chart.js';	
+	import { Chart, registerables } from 'chart.js';
 	import type { ChartData, ChartConfiguration } from 'chart.js';
 	import { categorizeQuestions } from '../../utils/categorize-questions';
 
 	Chart.register(...registerables);
 
 	let chartContainer: HTMLCanvasElement;
+
+	const plugin = {
+		id: 'customCanvasBackgroundImage',
+		beforeDraw: (chart: { width?: number; height?: number; ctx?: any }) => {
+			const { ctx } = chart;
+			ctx.save();
+			ctx.fillStyle = '#fff';
+			ctx.fillRect(0, 0, chart.width, chart.height);
+			ctx.restore();
+		}
+	};
 
 	onMount(async () => {
 		const ctx = chartContainer.getContext('2d');
@@ -26,57 +37,66 @@
 		};
 
 		const questionsPerCategory = categorizeQuestions($questionsStore);
-		console.log(questionsPerCategory);
 		const datasets: ChartData<'polarArea', number[], string> = {
-				datasets: [{
-						data: [],
-						backgroundColor: [],
-						borderColor: [],
-
-				}],
-				labels: []
+			datasets: [
+				{
+					data: [],
+					backgroundColor: [],
+					borderColor: []
+				}
+			],
+			labels: []
 		};
 
 		Object.entries(questionsPerCategory).forEach(([categoryKey, categoryQuestions]) => {
-			console.log(categoryKey)
-				const totalWeight = totalWeightForCategory(categoryQuestions);
-				
-				datasets.datasets[0].data.push(totalWeight);
-				datasets.datasets[0].backgroundColor!.push(categoryColorsTransparent[categoryKey as Category].replace('%s', '0.5'));
-				datasets.datasets[0].borderColor!.push(categoryColors[categoryKey as Category]);
-				datasets.labels!.push(`${categoryKey} (${totalWeight})`);
+			console.log(categoryKey);
+			const totalWeight = totalWeightForCategory(categoryQuestions);
+
+			datasets.datasets[0].data.push(totalWeight);
+			datasets.datasets[0].backgroundColor!.push(
+				categoryColorsTransparent[categoryKey as Category].replace('%s', '0.5')
+			);
+			datasets.datasets[0].borderColor!.push(categoryColors[categoryKey as Category]);
+			datasets.labels!.push(`${categoryKey} (${totalWeight})`);
 		});
 
-		const chartConfig: ChartConfiguration<'polarArea', {data:number[], backgroundColor:string[]}[], string> = {
-				type: 'polarArea',
-				data: datasets,
-				options: {
-					responsive: true,
-					scales: {
-							r: {
-									beginAtZero: true
-							}
-					},
-					plugins: {
-							legend: {
-									labels: {
-											color: 'rgb(255, 255, 255)',
-											padding: 20,
-									}
-							}
+		const chartConfig: ChartConfiguration<'polarArea', number[], string> = {
+			type: 'polarArea',
+			data: datasets,
+			options: {
+				responsive: true,
+				scales: {
+					r: {
+						beginAtZero: true
+					}
+				},
+				plugins: {
+					legend: {
+						labels: {
+							color: 'rgb(0, 0, 0)',
+							padding: 20
+						}
 					}
 				}
+			},
+			plugins: [plugin]
 		};
 
-
-new Chart(ctx, chartConfig);
-
+		new Chart(ctx, chartConfig);
 	});
+
+	const exportGraph = () => {
+		const a = document.createElement('a');
+		a.href = chartContainer.toDataURL('image/png');
+		a.download = 'graph.png';
+		a.click();
+	};
 </script>
 
 <div class="graph-wrapper">
 	<canvas bind:this={chartContainer} />
 </div>
+<button on:click={exportGraph}>Download Graph as image</button>
 
 <style lang="scss">
 	.graph-wrapper {
