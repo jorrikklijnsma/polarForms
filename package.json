@@ -2,6 +2,7 @@
 	"name": "polarforms",
 	"version": "0.0.1",
 	"private": true,
+	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -28,7 +29,6 @@
 		"typescript": "^5.0.0",
 		"vite": "^4.3.6"
 	},
-	"type": "module",
 	"dependencies": {
 		"@types/chart.js": "^2.9.37",
 		"chart.js": "^4.3.3"

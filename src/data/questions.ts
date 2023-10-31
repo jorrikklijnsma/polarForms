@@ -8,11 +8,11 @@ type AnswerOption = {
 };
 
 export enum Category {
-	Category1 = 'Category 1',
-	Category2 = 'Category 2',
-	Category3 = 'Category 3',
-	Category4 = 'Category 4',
-	Category5 = 'Category 5'
+	Category1 = 'ACTIEF LUISTEREN',
+	Category2 = 'ZELFBEWUSTZIJN',
+	Category3 = 'STAKEHOLDERS BETREKKEN',
+	Category4 = 'WAARDEVOLLE INFORMATIE VINDEN',
+	Category5 = 'INBEELDEN & BEGRIJPEN'
 }
 
 type CategoryColor = {
@@ -30,333 +30,334 @@ export type QuestionsArray = Question[];
 
 const questions: QuestionsArray = [
 	{
-		id: 'q1',
-		text: 'I exercise regularly.',
-		answer: 0,
-		category: 'Category 1'
+		id: '1',
+		text: 'Antwoordformat (simpel hetzelfde voor nu)',
+		answer: undefined,
+		category: 'ACTIEF LUISTEREN'
 	},
 	{
-		id: 'q2',
-		text: 'I eat a balanced diet.',
+		id: '2',
+		text: 'Wanneer ik het niet eens ben met mijn respondent, kan ik mijn mening voor me te houden',
 		answer: undefined,
-		category: 'Category 1'
+		category: 'ACTIEF LUISTEREN'
 	},
 	{
-		id: 'q3',
-		text: 'I get enough sleep every night.',
+		id: '3',
+		text: 'Tijdens interviews, houd ik mijn eigen mening voor me',
 		answer: undefined,
-		category: 'Category 1'
+		category: 'ACTIEF LUISTEREN'
 	},
 	{
-		id: 'q4',
-		text: 'I manage stress effectively.',
+		id: '4',
+		text: 'Tijdens interviews, let ik ook op informatie die mijn idee(ën) ontkracht',
 		answer: undefined,
-		category: 'Category 1'
+		category: 'ACTIEF LUISTEREN'
 	},
 	{
-		id: 'q5',
-		text: 'I maintain a healthy weight.',
+		id: '5',
+		text: 'Tijdens interviews, sta ik ervoor open om mijn mening over mijn respondent aan te passen',
 		answer: undefined,
-		category: 'Category 1'
+		category: 'ACTIEF LUISTEREN'
 	},
 	{
-		id: 'q6',
-		text: 'I avoid smoking and excessive alcohol consumption.',
+		id: '6',
+		text: 'Tijdens interviews, geef ik mijn respondent ruim de tijd om mijn vragen te beantwoorden',
 		answer: undefined,
-		category: 'Category 1'
+		category: 'ACTIEF LUISTEREN'
 	},
 	{
-		id: 'q7',
-		text: 'I have regular health check-ups.',
+		id: '7',
+		text: 'Tijdens interviews, kan ik mijn vooroordelen en aannames opzij zetten',
 		answer: undefined,
-		category: 'Category 1'
+		category: 'ACTIEF LUISTEREN'
 	},
 	{
-		id: 'q8',
-		text: 'I practice good hygiene.',
+		id: '8',
+		text: 'Tijdens interviews, kan ik stiltes laten vallen',
 		answer: undefined,
-		category: 'Category 1'
+		category: 'ACTIEF LUISTEREN'
 	},
 	{
-		id: 'q9',
-		text: 'I engage in hobbies or activities I enjoy.',
+		id: '9',
+		text: 'Tijdens interviews, laat ik mijn respondent volledig uitpraten',
 		answer: undefined,
-		category: 'Category 1'
+		category: 'ACTIEF LUISTEREN'
 	},
 	{
-		id: 'q10',
-		text: 'I have a positive outlook on life.',
-		answer: undefined,
-		category: 'Category 1'
+		id: '10',
+		text: 'Wanneer ik luister naar mijn respondent, kan ik herkennen over welke onderwerpen ik door moet vragen om mijn respondent te triggeren om meer informatie te delen',
+		category: 'ACTIEF LUISTEREN'
 	},
 	{
-		id: 'q11',
-		text: 'I have a strong support system.',
+		id: '11',
+		text: 'Tijdens interviews let ik erop dat mijn vragen niet sturend zijn',
 		answer: undefined,
-		category: 'Category 2'
+		category: 'ACTIEF LUISTEREN'
 	},
 	{
-		id: 'q12',
-		text: 'I communicate effectively with others.',
+		id: '12',
+		text: 'Tijdens interviews, ben ik mij bewust van mijn eigen emoties',
 		answer: undefined,
-		category: 'Category 2'
+		category: 'ZELFBEWUSTZIJN'
 	},
 	{
-		id: 'q13',
-		text: 'I listen actively to others.',
+		id: '13',
+		text: 'Tijdens interviews, ben ik mij bewust van de invloed die mijn aannames hebben op de manier waarop ik de antwoorden van mijn respondent interpreteer',
 		answer: undefined,
-		category: 'Category 2'
+		category: 'ZELFBEWUSTZIJN'
 	},
 	{
-		id: 'q14',
-		text: 'I resolve conflicts peacefully.',
+		id: '14',
+		text: 'Ik herken makkelijk op welke vlakken de belevingswereld van mijn respondent verschilt en overeenkomt met die van mij',
 		answer: undefined,
-		category: 'Category 2'
+		category: 'ZELFBEWUSTZIJN'
 	},
 	{
-		id: 'q15',
-		text: 'I show empathy towards others.',
+		id: '15',
+		text: 'Tijdens en voorafgaand aan een interview, ben ik mij bewust van de aannames die ik heb over mijn respondent',
 		answer: undefined,
-		category: 'Category 2'
+		category: 'ZELFBEWUSTZIJN'
 	},
 	{
-		id: 'q16',
-		text: 'I express my emotions in a healthy way.',
+		id: '16',
+		text: 'Tijdens interviews, ben ik mij bewust van mijn eigen gedrag',
 		answer: undefined,
-		category: 'Category 2'
+		category: 'ZELFBEWUSTZIJN'
 	},
 	{
-		id: 'q17',
-		text: 'I build and maintain healthy relationships.',
+		id: '17',
+		text: 'Tijdens en voorafgaand aan een interview, ben ik mij bewust van de vooroordelen die ik heb over mijn respondent',
 		answer: undefined,
-		category: 'Category 2'
+		category: 'ZELFBEWUSTZIJN'
 	},
 	{
-		id: 'q18',
-		text: 'I give and receive constructive feedback.',
+		id: '18',
+		text: 'Tijdens interviews, ben ik mij bewust van mijn eigen gedachten',
 		answer: undefined,
-		category: 'Category 2'
+		category: 'ZELFBEWUSTZIJN'
 	},
 	{
-		id: 'q19',
-		text: 'I practice active listening skills.',
+		id: '19',
+		text: 'Tijdens interviews ben ik mij ervan bewust op welke vlakken de belevingswereld van mijn respondent overeenkomt met die van mij',
 		answer: undefined,
-		category: 'Category 2'
+		category: 'ZELFBEWUSTZIJN'
 	},
 	{
-		id: 'q20',
-		text: 'I am open-minded and receptive to new ideas.',
-		answer: undefined,
-		category: 'Category 2'
+		id: '20',
+		text: 'Ik ben mij bewust van mijn eigen krachten en valkuilen bij het doen van interviews',
+		category: 'ZELFBEWUSTZIJN'
 	},
 	{
-		id: 'q21',
-		text: 'I set realistic goals and work towards them.',
+		id: '21',
+		text: 'Tijdens interviews ben ik mij ervan bewust op welke vlakken de belevingswereld van mijn respondent verschilt met die van mij',
 		answer: undefined,
-		category: 'Category 3'
+		category: 'ZELFBEWUSTZIJN'
 	},
 	{
-		id: 'q22',
-		text: 'I manage my time effectively.',
+		id: '22',
+		text: 'Tijdens interviews, kan ik aflezen aan het gedrag van mijn respondent of ik mijn interviewopzet moet aanpassen',
 		answer: undefined,
-		category: 'Category 3'
+		category: 'STAKEHOLDERS BETREKKEN'
 	},
 	{
-		id: 'q23',
-		text: 'I prioritize tasks and stay organized.',
+		id: '23',
+		text: 'Tijdens interviews, controleer ik of ik de antwoorden van mijn respondent goed heb begrepen',
 		answer: undefined,
-		category: 'Category 3'
+		category: 'STAKEHOLDERS BETREKKEN'
 	},
 	{
-		id: 'q24',
-		text: 'I handle multiple responsibilities well.',
+		id: '24',
+		text: 'Tijdens interviews, zorg ik ervoor dat mijn respondent zich gewaardeerd en gerespecteerd voelt',
 		answer: undefined,
-		category: 'Category 3'
+		category: 'STAKEHOLDERS BETREKKEN'
 	},
 	{
-		id: 'q25',
-		text: 'I meet deadlines consistently.',
+		id: '25',
+		text: 'Wanneer ik respondenten zoek voor mijn interviews, weet ik hoe ik ze enthousiast kan krijgen om mee te doen',
 		answer: undefined,
-		category: 'Category 3'
+		category: 'STAKEHOLDERS BETREKKEN'
 	},
 	{
-		id: 'q26',
-		text: 'I adapt to changes and challenges easily.',
+		id: '26',
+		text: 'Tijdens en/of voorafgaand aan interviews, leg ik mijn respondent duidelijk uit wat er gaat gebeuren tijdens het interview',
 		answer: undefined,
-		category: 'Category 3'
+		category: 'STAKEHOLDERS BETREKKEN'
 	},
 	{
-		id: 'q27',
-		text: 'I seek opportunities for personal growth and development.',
+		id: '27',
+		text: 'Wanneer ik interviews ontwerp, weet ik hoe ik ervoor kan zorgen dat het niet alleen waardevol is voor mij, maar ook voor de respondent',
 		answer: undefined,
-		category: 'Category 3'
+		category: 'STAKEHOLDERS BETREKKEN'
 	},
 	{
-		id: 'q28',
-		text: 'I am self-motivated and disciplined.',
+		id: '28',
+		text: 'Voordat ik interviews doe, weet ik welke mensen ik het best kan uitnodigen om zo nuttig mogelijke informatie te verzamelen',
 		answer: undefined,
-		category: 'Category 3'
+		category: 'STAKEHOLDERS BETREKKEN'
 	},
 	{
-		id: 'q29',
-		text: 'I learn from my mistakes and failures.',
+		id: '29',
+		text: 'Tijdens interviews, kan ik makkelijk een gesprek gaande houden met mijn respondent',
 		answer: undefined,
-		category: 'Category 3'
+		category: 'STAKEHOLDERS BETREKKEN'
 	},
 	{
-		id: 'q30',
-		text: 'I have a clear vision of my future goals.',
-		answer: undefined,
-		category: 'Category 3'
+		id: '30',
+		text: 'Tijdens interviews, pas ik mijn houding en woorden aan, aan wat de respondent nodig heeft',
+		category: 'STAKEHOLDERS BETREKKEN'
 	},
 	{
-		id: 'q31',
-		text: 'I am knowledgeable in my field of expertise.',
+		id: '31',
+		text: 'Wanneer een interviewopzet bedenk, weet ik hoe ik het zo kan inrichten dat mijn respondent zich volledig durft te uiten',
 		answer: undefined,
-		category: 'Category 4'
+		category: 'STAKEHOLDERS BETREKKEN'
 	},
 	{
-		id: 'q32',
-		text: 'I continuously update my skills and knowledge.',
+		id: '32',
+		text: 'Wanneer ik interviews doe, weet ik wanneer ik genoeg bruikbare informatie heb verzameld',
 		answer: undefined,
-		category: 'Category 4'
+		category: 'WAARDEVOLLE INFORMATIE VINDEN'
 	},
 	{
-		id: 'q33',
-		text: 'I seek opportunities to learn and grow professionally.',
+		id: '33',
+		text: 'Tijdens interviews weet ik hoe ik de belangrijkste behoeftes van mijn respondent kan vinden',
 		answer: undefined,
-		category: 'Category 4'
+		category: 'WAARDEVOLLE INFORMATIE VINDEN'
 	},
 	{
-		id: 'q34',
-		text: 'I collaborate well with colleagues.',
+		id: '34',
+		text: 'Wanneer ik interviews doe, weet ik wanneer nog niet genoeg informatie heb verzameld om mee te kunnen werken',
 		answer: undefined,
-		category: 'Category 4'
+		category: 'WAARDEVOLLE INFORMATIE VINDEN'
 	},
 	{
-		id: 'q35',
-		text: 'I contribute positively to team projects.',
+		id: '35',
+		text: 'Ik kan makkelijk verbanden vinden tussen antwoorden van een respondent en de informatie die ik eerder over deze respondent heb verzameld',
 		answer: undefined,
-		category: 'Category 4'
+		category: 'WAARDEVOLLE INFORMATIE VINDEN'
 	},
 	{
-		id: 'q36',
-		text: 'I take initiative and show leadership qualities.',
+		id: '36',
+		text: 'Voordat ik een interview start, weet ik precies naar welke informatie ik op zoek ben en waarom',
 		answer: undefined,
-		category: 'Category 4'
+		category: 'WAARDEVOLLE INFORMATIE VINDEN'
 	},
 	{
-		id: 'q37',
-		text: 'I handle work-related stress effectively.',
+		id: '37',
+		text: 'Ik kan makkelijk verbanden vinden tussen de (verschillende) behoeftes van twee of meer van mijn respondenten',
 		answer: undefined,
-		category: 'Category 4'
+		category: 'WAARDEVOLLE INFORMATIE VINDEN'
 	},
 	{
-		id: 'q38',
-		text: 'I communicate clearly and effectively in a professional setting.',
+		id: '38',
+		text: 'Tijdens interviews ga ik door tot ik de diepst liggende motieven van mijn respondent heb gevonden',
 		answer: undefined,
-		category: 'Category 4'
+		category: 'WAARDEVOLLE INFORMATIE VINDEN'
 	},
 	{
-		id: 'q39',
-		text: 'I meet or exceed performance expectations.',
+		id: '39',
+		text: 'Tijdens interviews kan ik makkelijk uitvinden welke motieven er achter het gedrag van mijn respondent liggen',
 		answer: undefined,
-		category: 'Category 4'
+		category: 'WAARDEVOLLE INFORMATIE VINDEN'
 	},
 	{
-		id: 'q40',
-		text: 'I am proactive in identifying and solving problems.',
-		answer: undefined,
-		category: 'Category 4'
+		id: '40',
+		text: 'Ik kan makkelijk herkennen wanneer er een diepere laag van informatie verstopt zit achter een antwoord van mijn respondent',
+		category: 'WAARDEVOLLE INFORMATIE VINDEN'
 	},
 	{
-		id: 'q41',
-		text: 'I contribute to my community through volunteer work.',
+		id: '41',
+		text: 'Ik kan makkelijk uitvinden welke behoeftes van mijn verschillende respondenten met elkaar overeenkomen en verschillen',
 		answer: undefined,
-		category: 'Category 5'
+		category: 'WAARDEVOLLE INFORMATIE VINDEN'
 	},
 	{
-		id: 'q42',
-		text: 'I practice sustainable and environmentally friendly habits.',
+		id: '42',
+		text: 'Tijdens interviews kan ik de situatie/ervaring van mijn respondent tot in detail inbeelden',
 		answer: undefined,
-		category: 'Category 5'
+		category: 'INBEELDEN & BEGRIJPEN'
 	},
 	{
-		id: 'q43',
-		text: 'I respect and appreciate diversity.',
+		id: '43',
+		text: 'Ik kan me goed voorstellen hoe mijn respondent zich zou kunnen gedragen in verschillende situaties die relevant zijn voor mijn project',
 		answer: undefined,
-		category: 'Category 5'
+		category: 'INBEELDEN & BEGRIJPEN'
 	},
 	{
-		id: 'q44',
-		text: 'I advocate for social justice and equality.',
+		id: '44',
+		text: 'Ik kan me goed voorstellen waarom mijn respondent bepaald gedrag vertoont',
 		answer: undefined,
-		category: 'Category 5'
+		category: 'INBEELDEN & BEGRIJPEN'
 	},
 	{
-		id: 'q45',
-		text: 'I help others in need.',
+		id: '45',
+		text: 'Ik kan me goed voorstellen waarom mijn respondent bepaalde emoties voelt',
 		answer: undefined,
-		category: 'Category 5'
+		category: 'INBEELDEN & BEGRIJPEN'
 	},
 	{
-		id: 'q46',
-		text: 'I participate in charitable activities.',
+		id: '46',
+		text: 'Wanneer mijn respondent een situatie beschrijft, kan ik me voorstellen hoe ik die situatie zelf zou ervaren',
 		answer: undefined,
-		category: 'Category 5'
+		category: 'INBEELDEN & BEGRIJPEN'
 	},
 	{
-		id: 'q47',
-		text: 'I support local businesses and initiatives.',
+		id: '47',
+		text: 'Wanneer mijn respondent een situatie beschrijft, kan ik die situatie duidelijk inbeelden',
 		answer: undefined,
-		category: 'Category 5'
+		category: 'INBEELDEN & BEGRIJPEN'
 	},
 	{
-		id: 'q48',
-		text: 'I promote a culture of inclusivity and acceptance.',
+		id: '48',
+		text: 'Ik vind het makkelijk om het gedrag van mijn respondenten te verklaren aan de hand van hun belevingswereld',
 		answer: undefined,
-		category: 'Category 5'
+		category: 'INBEELDEN & BEGRIJPEN'
 	},
 	{
-		id: 'q49',
-		text: 'I engage in ethical and responsible behaviors.',
+		id: '49',
+		text: 'Ik kan me goed voorstellen welke emoties mijn respondent zouden kunnen voelen in de verschillende situaties die relevant zijn voor mijn project',
 		answer: undefined,
-		category: 'Category 5'
+		category: 'INBEELDEN & BEGRIJPEN'
 	},
 	{
-		id: 'q50',
-		text: 'I contribute positively to society.',
+		id: '50',
+		text: 'Ik vind het makkelijk om in te beelden hoe mijn respondenten zich zouden gedragen bij het gebruik van mijn ontwerp en/of toepassing van mijn advies',
 		answer: undefined,
-		category: 'Category 5'
+		category: 'INBEELDEN & BEGRIJPEN'
+	},
+	{
+		id: '51',
+		text: 'Ik vind het makkelijk om het gedrag van mijn respondenten te voorspellen aan de hand van hun belevingswereld',
+		answer: undefined,
+		category: 'INBEELDEN & BEGRIJPEN'
 	}
 ];
 
 // Create a writable store to store the questions
-
 export const questionsStore: Writable<QuestionsArray> = writable(shuffleArray(questions));
 
 // Create a writable store to store the current question
 export const currentQuestionStore: Writable<Question | undefined> = writable(undefined);
 
 export const answerOptions: AnswerOption[] = [
-	{ text: 'Never', value: 3 },
-	{ text: 'Sometimes', value: 2 },
-	{ text: 'Often', value: 1 },
-	{ text: 'Always', value: 0 }
+	{ text: 'nooit', value: 3 },
+	{ text: 'soms', value: 2 },
+	{ text: 'vaak', value: 1 },
+	{ text: 'altijd', value: 0 }
 ];
 
 export const categoryColors: CategoryColor = {
-	'Category 1': 'hsla(39, 100%, 63%, 1)',
-	'Category 2': 'hsla(338, 85%, 46%, 1)',
-	'Category 3': 'hsla(335, 52%, 37%, 1)',
-	'Category 4': 'hsla(178, 60%, 32%, 1)',
-	'Category 5': 'hsla(187, 62%, 66%, 1)'
+	'ACTIEF LUISTEREN': 'hsla(7, 40%, 59%, 1)',
+	ZELFBEWUSTZIJN: 'hsla(28, 35%, 66%, 1)',
+	'STAKEHOLDERS BETREKKEN': 'hsla(46, 34%, 68%, 1)',
+	'WAARDEVOLLE INFORMATIE VINDEN': 'hsla(129, 20%, 58%, 1)',
+	'INBEELDEN & BEGRIJPEN': 'hsla(220, 26%, 67%, 1)'
 };
 
 export const categoryColorsTransparent: CategoryColor = {
-	'Category 1': 'hsla(39, 100%, 63%, %s)',
-	'Category 2': 'hsla(338, 85%, 46%, %s)',
-	'Category 3': 'hsla(335, 52%, 37%, %s)',
-	'Category 4': 'hsla(178, 60%, 32%, %s)',
-	'Category 5': 'hsla(187, 62%, 66%, %s)'
+	'ACTIEF LUISTEREN': 'hsla(7, 40%, 59%, %s)',
+	ZELFBEWUSTZIJN: 'hsla(28, 35%, 66%, %s)',
+	'STAKEHOLDERS BETREKKEN': 'hsla(46, 34%, 68%, %s)',
+	'WAARDEVOLLE INFORMATIE VINDEN': 'hsla(129, 20%, 58%, %s)',
+	'INBEELDEN & BEGRIJPEN': 'hsla(220, 26%, 67%, %s)'
 };
