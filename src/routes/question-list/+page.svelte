@@ -54,7 +54,17 @@
 		// On initial load, check if there are any saved questions in local storage
 		const savedQuestions = localStorage.getItem('questions');
 		if (savedQuestions) {
-			questionsStore.set(JSON.parse(savedQuestions));
+			const parsedQuestions = JSON.parse(savedQuestions);
+			const sortedQuestionsByCategory = parsedQuestions.sort((a: Question, b: Question) => {
+				if (a.category < b.category) {
+					return -1;
+				}
+				if (a.category > b.category) {
+					return 1;
+				}
+				return 0;
+			});
+			questionsStore.set(sortedQuestionsByCategory);
 		}
 
 		// Add event listener
@@ -63,7 +73,9 @@
 
 	// Cleanup on component unmount
 	onDestroy(() => {
-		window.removeEventListener('keydown', handleKeydown);
+    if (typeof window !== 'undefined') {
+        window.removeEventListener('keydown', handleKeydown);
+    }
 	});
 
 	// Computed property to retrieve the category color
@@ -76,7 +88,9 @@
 		{#each $questionsStore as question (question.id)}
 			<li style={`--category-color: ${getCategoryColorFromQuestion(question)}`}>
 				{question.text}
-
+				<div>
+					{question.category} color: {getCategoryColorFromQuestion(question)}
+				</div>
 				<div>
 					{#if question.answer}
 						<span>{answerOptions.find((answer) => answer.value === question.answer)?.text}</span>

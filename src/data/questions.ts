@@ -31,7 +31,7 @@ export type QuestionsArray = Question[];
 const questions: QuestionsArray = [
 	{
 		id: '1',
-		text: 'Antwoordformat (simpel hetzelfde voor nu)',
+		text: 'Tijdens interviews let ik erop dat mijn vragen niet sturend zijn',
 		answer: undefined,
 		category: 'ACTIEF LUISTEREN'
 	},
@@ -86,13 +86,14 @@ const questions: QuestionsArray = [
 	{
 		id: '10',
 		text: 'Wanneer ik luister naar mijn respondent, kan ik herkennen over welke onderwerpen ik door moet vragen om mijn respondent te triggeren om meer informatie te delen',
+		answer: undefined,
 		category: 'ACTIEF LUISTEREN'
 	},
 	{
 		id: '11',
-		text: 'Tijdens interviews let ik erop dat mijn vragen niet sturend zijn',
+		text: 'Tijdens interviews ben ik mij ervan bewust op welke vlakken de belevingswereld van mijn respondent verschilt met die van mij',
 		answer: undefined,
-		category: 'ACTIEF LUISTEREN'
+		category: 'ZELFBEWUSTZIJN'
 	},
 	{
 		id: '12',
@@ -145,13 +146,14 @@ const questions: QuestionsArray = [
 	{
 		id: '20',
 		text: 'Ik ben mij bewust van mijn eigen krachten en valkuilen bij het doen van interviews',
+		answer: undefined,
 		category: 'ZELFBEWUSTZIJN'
 	},
 	{
 		id: '21',
-		text: 'Tijdens interviews ben ik mij ervan bewust op welke vlakken de belevingswereld van mijn respondent verschilt met die van mij',
+		text: 'Wanneer een interviewopzet bedenk, weet ik hoe ik het zo kan inrichten dat mijn respondent zich volledig durft te uiten',
 		answer: undefined,
-		category: 'ZELFBEWUSTZIJN'
+		category: 'STAKEHOLDERS BETREKKEN'
 	},
 	{
 		id: '22',
@@ -204,13 +206,14 @@ const questions: QuestionsArray = [
 	{
 		id: '30',
 		text: 'Tijdens interviews, pas ik mijn houding en woorden aan, aan wat de respondent nodig heeft',
+		answer: undefined,
 		category: 'STAKEHOLDERS BETREKKEN'
 	},
 	{
 		id: '31',
-		text: 'Wanneer een interviewopzet bedenk, weet ik hoe ik het zo kan inrichten dat mijn respondent zich volledig durft te uiten',
+		text: 'Ik kan makkelijk uitvinden welke behoeftes van mijn verschillende respondenten met elkaar overeenkomen en verschillen',
 		answer: undefined,
-		category: 'STAKEHOLDERS BETREKKEN'
+		category: 'WAARDEVOLLE INFORMATIE VINDEN'
 	},
 	{
 		id: '32',
@@ -263,13 +266,14 @@ const questions: QuestionsArray = [
 	{
 		id: '40',
 		text: 'Ik kan makkelijk herkennen wanneer er een diepere laag van informatie verstopt zit achter een antwoord van mijn respondent',
+		answer: undefined,
 		category: 'WAARDEVOLLE INFORMATIE VINDEN'
 	},
 	{
 		id: '41',
-		text: 'Ik kan makkelijk uitvinden welke behoeftes van mijn verschillende respondenten met elkaar overeenkomen en verschillen',
+		text: 'Ik vind het makkelijk om het gedrag van mijn respondenten te voorspellen aan de hand van hun belevingswereld',
 		answer: undefined,
-		category: 'WAARDEVOLLE INFORMATIE VINDEN'
+		category: 'INBEELDEN & BEGRIJPEN'
 	},
 	{
 		id: '42',
@@ -324,12 +328,6 @@ const questions: QuestionsArray = [
 		text: 'Ik vind het makkelijk om in te beelden hoe mijn respondenten zich zouden gedragen bij het gebruik van mijn ontwerp en/of toepassing van mijn advies',
 		answer: undefined,
 		category: 'INBEELDEN & BEGRIJPEN'
-	},
-	{
-		id: '51',
-		text: 'Ik vind het makkelijk om het gedrag van mijn respondenten te voorspellen aan de hand van hun belevingswereld',
-		answer: undefined,
-		category: 'INBEELDEN & BEGRIJPEN'
 	}
 ];
 
@@ -340,10 +338,10 @@ export const questionsStore: Writable<QuestionsArray> = writable(shuffleArray(qu
 export const currentQuestionStore: Writable<Question | undefined> = writable(undefined);
 
 export const answerOptions: AnswerOption[] = [
-	{ text: 'nooit', value: 3 },
+	{ text: 'nooit', value: 1 },
 	{ text: 'soms', value: 2 },
-	{ text: 'vaak', value: 1 },
-	{ text: 'altijd', value: 0 }
+	{ text: 'vaak', value: 3 },
+	{ text: 'altijd', value: 4 }
 ];
 
 export const categoryColors: CategoryColor = {

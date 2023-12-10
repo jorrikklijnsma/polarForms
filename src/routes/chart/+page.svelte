@@ -50,7 +50,7 @@
 
 		Object.entries(questionsPerCategory).forEach(([categoryKey, categoryQuestions]) => {
 			console.log(categoryKey);
-			const totalWeight = totalWeightForCategory(categoryQuestions);
+			const totalWeight = totalWeightForCategory(categoryQuestions) - 10;
 
 			datasets.datasets[0].data.push(totalWeight);
 			datasets.datasets[0].backgroundColor!.push(
@@ -67,7 +67,8 @@
 				responsive: true,
 				scales: {
 					r: {
-						beginAtZero: true
+						beginAtZero: true,
+						suggestedMax: 30
 					}
 				},
 				plugins: {
