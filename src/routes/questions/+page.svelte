@@ -3,7 +3,6 @@
 	import type { Question, Category } from '../../data/questions';
 	import { get } from 'svelte/store';
 	import { onMount, onDestroy } from 'svelte';
-	import { clearAnswers } from '../../utils/clear-answers';
 
 	let currentQuestionIndex = 0;
 	let currentQuestion: Question | undefined;
@@ -12,14 +11,30 @@
 	let keyAnswerMap: Record<string, number> = {};
 	answerOptions.forEach((option) => {
 		keyAnswerMap[option.text.at(0)!.toString().toLowerCase()] = option.value;
+		console.log(keyAnswerMap);
 	});
 
 	// Handle keydown events
 	const handleKeydown = (event: KeyboardEvent) => {
 		const answer = keyAnswerMap[event.key];
+		console.log(answer);
 		if (answer) {
 			handleAnswer(answer);
 		}
+	};
+
+	const handleClearAnswer = () => {
+
+	questionsStore.update(questions => {
+		questions.forEach(question => {
+			question.answer = undefined;
+		});
+
+		// Save to local storage
+		localStorage.setItem('questions', JSON.stringify(questions));
+
+		return [...questions];
+	})
 	};
 
 	onMount(() => {
@@ -38,8 +53,10 @@
 
 	// Cleanup on component unmount
 	onDestroy(() => {
-		window.removeEventListener('keydown', handleKeydown);
-	});
+    if (typeof window !== 'undefined') {
+        window.removeEventListener('keydown', handleKeydown);
+    }
+});
 
 	const handleAnswer = (value: number) => {
 		if (currentQuestion) {
@@ -72,9 +89,6 @@
 <div class="question-card">
 	{#if currentQuestion}
 		<h2>{currentQuestion.text}</h2>
-		<span class="category-tag" style={`--category-color: ${categoryColor}`}
-			>{currentQuestion.category}</span
-		>
 
 		<div class="answer-options">
 			{#each answerOptions as option (option.value)}
@@ -93,7 +107,7 @@
 	{/if}
 </div>
 
-<button on:click={clearAnswers}>Clear answers</button>
+<button on:click={() => handleClearAnswer()}>Clear answers</button>
 
 <style>
 	.question-card {
