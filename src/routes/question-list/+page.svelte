@@ -89,9 +89,6 @@
 			<li style={`--category-color: ${getCategoryColorFromQuestion(question)}`}>
 				{question.text}
 				<div>
-					{question.category} color: {getCategoryColorFromQuestion(question)}
-				</div>
-				<div>
 					{#if question.answer}
 						<span>{answerOptions.find((answer) => answer.value === question.answer)?.text}</span>
 						<button on:click={() => openModal(question)} on:keypress={() => openModal(question)}>
