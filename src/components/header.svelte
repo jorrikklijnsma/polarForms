@@ -1,5 +1,26 @@
 <script lang="ts">
+  import { page } from '$app/stores';
 	import { questionsStore } from '../data/questions';
+	import Button from './button.svelte';
+
+	const pageLinks = [
+		{
+			name: 'Home',
+			url: '/'
+		},
+		{
+			name: 'Questions',
+			url: '/questions'
+		},
+		{
+			name: 'Question list',
+			url: '/question-list'
+		},
+		{
+			name: 'Chart',
+			url: '/chart'
+		}
+	]
 
 	const exportQuestions = () => {
 		const questions = JSON.stringify($questionsStore);
@@ -33,12 +54,15 @@
 	<h1>Polar Forms</h1>
 	<nav>
 		<ul>
-			<li><a href="/">Home</a></li>
-			<li><a href="/questions">Questions</a></li>
-			<li><a href="/question-list">Question list</a></li>
-			<li><a href="/chart">Chart</a></li>
-			<li><button on:click={exportQuestions} class="export-button">Export</button></li>
-			<li><button on:click={importQuestions}>Import</button></li>
+			{#each pageLinks as link}
+				<li>
+					<Button buttonType="Empty" isActive={$page.url.pathname === link.url}>
+						<a href={link.url}>{link.name}</a>
+					</Button>
+				</li>
+			{/each}
+			<li><Button buttonType="link" on:click={exportQuestions} class="export-button">Export</Button></li>
+			<li><Button buttonType="link" on:click={importQuestions}>Import</Button></li>
 		</ul>
 	</nav>
 </header>
@@ -49,11 +73,12 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 1rem 2rem;
-		background: var(--xanthous);
-		color: #fff;
+		background: var(--light-blue);
+		color: var(--black);
 
 		h1 {
 			font-size: 2rem;
+			color: var(--teal);
 		}
 
 		nav {
@@ -64,29 +89,7 @@
 				gap: 2rem 1rem;
 
 				li {
-					a,
 					button {
-						display: block;
-						background: var(--quinacridone-magenta);
-						text-align: center;
-						border-radius: 0.25rem;
-						color: #fff;
-						text-decoration: none;
-						font-size: 1.25rem;
-						padding: 0.5rem 1rem;
-						word-break: keep-all;
-						position: relative;
-
-						&:hover {
-							background: var(--raspberry);
-						}
-					}
-
-					button {
-						outline: none;
-						border: none;
-						cursor: pointer;
-
 						&.export-button {
 							margin-left: 4rem;
 
@@ -96,7 +99,7 @@
 								position: absolute;
 								left: -2.5rem;
 								top: 0;
-								background: rgba(255, 255, 255, 0.3);
+								background: var(--white);
 								height: 40px;
 								width: 2px;
 							}

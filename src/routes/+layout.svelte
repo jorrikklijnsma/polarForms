@@ -11,16 +11,21 @@
 	</main>
 </div>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.polar-charts {
 		display: grid;
 		grid-template-rows: auto 1fr;
 		min-height: 100vh;
 	}
 	main {
-		display: grid;
-		place-items: center;
-		background: #222;
+		display: flex;
+		align-items: flex-start;
+		background: var(--light-grey);
 		padding: 1rem;
+		padding-top: 4rem;
+
+		&:has(.is-white-page) {
+			background: var(--white);
+		}
 	}
 </style>

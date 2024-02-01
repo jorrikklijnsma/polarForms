@@ -1,4 +1,4 @@
-<div class="titleWrapper">
+<div class="titleWrapper is-white-page">
 	<h1>Welcome to polarForms</h1>
 	<a href="/questions">Start!</a>
 </div>
@@ -10,13 +10,13 @@
 		flex-direction: column;
 
 		h1 {
-			color: var(--xanthous);
+			color: var(--teal);
 			font-size: 3rem;
 		}
 
 		a {
-			background: var(--raspberry);
-			color: #fff;
+			background: var(--orange);
+			color: var(--white);
 			text-align: center;
 			font-size: 2rem;
 			padding: 1rem 1.5rem;
@@ -24,7 +24,7 @@
 			border-radius: 0.25rem;
 
 			&:hover {
-				background: var(--quinacridone-magenta);
+				background: var(--dark-orange);
 			}
 		}
 	}
