@@ -20,12 +20,14 @@
 	main {
 		display: flex;
 		align-items: flex-start;
+		justify-content: center;
 		background: var(--light-grey);
 		padding: 1rem;
 		padding-top: 4rem;
 
 		&:has(.is-white-page) {
 			background: var(--white);
+			align-items: center;
 		}
 	}
 </style>

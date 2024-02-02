@@ -56,7 +56,7 @@
 		<ul>
 			{#each pageLinks as link}
 				<li>
-					<Button buttonType="Empty" isActive={$page.url.pathname === link.url}>
+					<Button buttonType="empty" isActive={$page.url.pathname === link.url}>
 						<a href={link.url}>{link.name}</a>
 					</Button>
 				</li>

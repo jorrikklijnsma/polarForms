@@ -151,7 +151,7 @@
 			</li>
 		</ul>
 		<p>
-			De vragenlijst is volledig anoniem. Je bent dus zelf verantwoordelijk voor het downloaden/opslaan van je resultaten. 
+			De vragenlijst is volledig anoniem. Je bent dus zelf verantwoordelijk voor het downloaden/opslaan van je resultaten.<br>
 			<strong>Vergeet dit niet</strong>, want deze zijn nodig om de workshop goed mee te kunnen doen. 
 		</p>
 
@@ -199,7 +199,7 @@ Gesprekspartner kun je ook interpreteren als klant, werknemer, deelnemer, etc.
 	</footer>
 
 	<div class="clearAnwsers">
-		<Button on:buttonClickedEvent={() => handleClearAnswer()} buttonType="empty">
+		<Button on:buttonClickedEvent={() => handleClearAnswer()} buttonType="empty" size="small">
 			Clear answers
 		</Button>
 	</div>

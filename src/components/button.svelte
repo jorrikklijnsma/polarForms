@@ -2,7 +2,9 @@
 	import { createEventDispatcher } from 'svelte';
 
 	type ButtonType = 'primary' | 'secondary' | 'tertiary' | 'fourth' | 'link' | 'empty';
+	type ButtonSize ='extraLarge' | 'large' | 'medium' | 'small';
 	export let buttonType: ButtonType = 'primary';
+	export let size: ButtonSize = 'medium';
 	export let isActive: Boolean = false;
 	export let isDisabled: boolean | null | undefined = false;
 
@@ -19,9 +21,16 @@
 		primary: 'var(--blue)',
 		secondary: 'var(--light-blue)',
 		tertiary: 'var(--light-orange)',
-		fourth: 'var(--orange)',
+		fourth: 'var(--blue)',
 		link: 'var(--blue)',
 		empty: 'transparent'
+	};
+
+	const buttonFontSizes = {
+		extraLarge: 'var(--font-size-button-extra-large)',
+		large: 'var(--font-size-button-large)',
+		medium: 'var(--font-size-button-medium)',
+		small: 'var(---font-size-button-small)',
 	};
 
 	const dispatch = createEventDispatcher();
@@ -31,7 +40,8 @@
 	}
 </script>
 
-<button on:click={registerClick} class="{buttonType} {isActive ? 'active' : ''} ${$$props.class}" disabled={isDisabled} style="--background-color: {buttonTypeColors[buttonType]}; --background-hover-color: {buttonTypeHoverColors[buttonType]}">
+<button on:click={registerClick}
+class="{buttonType} {isActive ? 'active' : ''} ${$$props.class}" disabled={isDisabled} style="--background-color: {buttonTypeColors[buttonType]}; --background-hover-color: {buttonTypeHoverColors[buttonType]}; --font-size: {buttonFontSizes[size]}">
 	<slot></slot>
 </button>
 
@@ -39,12 +49,12 @@
 	button {
 		display: block;
 		background: var(--background-color);
+		font-size: var(--font-size);
 		text-align: center;
 		border-radius: 0.25rem;
 		color: inherit;
 		font-weight: bold;
 		text-decoration: none;
-		font-size: 1.25rem;
 		padding: 0.5rem 1rem;
 		word-break: keep-all;
 		position: relative;
@@ -55,6 +65,13 @@
 
 		&.tertiary {
 			color: var(--white);
+		}
+
+
+		&.fourth {
+			&:hover {
+				color: var(--white);
+			}
 		}
 
 		&.active {

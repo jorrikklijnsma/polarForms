@@ -3,6 +3,7 @@
 	import type { Question, Category } from '../../data/questions';
 	import { onMount, onDestroy } from 'svelte';
 	import { clearAnswers } from '../../utils/clear-answers';
+	import Button from '../../components/button.svelte';
 
 	let selectedQuestion: Question | undefined = undefined;
 	let isModalOpen: Boolean = false;
@@ -88,47 +89,61 @@
 		{#each $questionsStore as question (question.id)}
 			<li style={`--category-color: ${getCategoryColorFromQuestion(question)}`}>
 				{question.text}
-				<div>
+				<div class="actions">
 					{#if question.answer}
 						<span>{answerOptions.find((answer) => answer.value === question.answer)?.text}</span>
-						<button on:click={() => openModal(question)} on:keypress={() => openModal(question)}>
-							adjust anwser
-						</button>
 					{:else}
 						<span>Not answered</span>
-						<button on:click={() => openModal(question)} on:keypress={() => openModal(question)}>
-							give anwser
-						</button>
-					{/if}
+					{/if}	
+					<Button on:buttonClickedEvent={() => {openModal(question)}}
+						buttonType="fourth"
+						size="small"
+					>
+						Edit
+					</Button>
 				</div>
 			</li>
 		{/each}
 	</ul>
+	<Button on:buttonClickedEvent={clearAnswers}
+		buttonType="fourth"
+		size="small"
+		>
+		Clear anwsers
+	</Button>
 </section>
 
 <!-- Modal -->
 {#if isModalOpen && selectedQuestion}
 	<div class="modal" style={`--category-color: ${categoryColor}`}>
 		<div class="modal-content">
+			<header>		
+				<Button on:buttonClickedEvent={closeModal}
+					buttonType="link"
+					size="small"
+					>
+						x
+				</Button>
+			</header>
 			<h2>{selectedQuestion.text}</h2>
 			<div class="answer-options">
 				{#each answerOptions as option}
-					<button
-						on:click={() => {
-							handleAnswer(option.value);
-							closeModal();
-						}}
-					>
-						<u>{option.text.at(0)}</u>{option.text.slice(1)}
-					</button>
+
+			<Button
+				on:buttonClickedEvent={() => {handleAnswer(option.value);
+							closeModal();}}
+				isDisabled={selectedQuestion.answer === option.value}
+				buttonType="fourth"
+			>
+				<u>{option.text.at(0)}</u>{option.text.slice(1)}
+			</Button>
 				{/each}
 			</div>
-			<button on:click={closeModal}>Close</button>
+
 		</div>
 	</div>
 {/if}
 
-<button on:click={clearAnswers}>Clear answers</button>
 
 <style lang="scss">
 	.questions-list {
@@ -139,7 +154,6 @@
 			background: #fff;
 			padding: 10px;
 			cursor: pointer;
-			box-shadow: 0 3px 0 var(--category-color);
 			font-size: 1rem;
 			margin-block-end: 1.5rem;
 			display: flex;
@@ -148,21 +162,19 @@
 			transition: box-shadow 0.1s ease-in-out, transform 0.1s ease-in-out;
 
 			&:hover {
-				box-shadow: 0 0 10px var(--category-color);
 				transform: scale(1.01);
 			}
-
-			button {
-				padding: 0.5rem 1rem;
-				font-size: 1rem;
-				border-radius: 4px;
-				border: none;
-				background-color: var(--category-color);
-				color: #fff;
-				cursor: pointer;
+			
+			.actions {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: flex-end;
+				gap: 0.5rem;
 			}
 		}
 	}
+
 
 	.modal {
 		position: fixed;
@@ -182,45 +194,22 @@
 			max-width: 80%;
 			max-height: 80%;
 			overflow-y: auto;
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
 
 			.answer-options {
 				display: flex;
-				justify-content: space-between;
+				justify-content: center;
 				flex-wrap: wrap;
-				gap: 1rem;
-				margin-top: 1rem;
-
-				button {
-					padding: 1.5rem 3rem;
-					font-size: 2rem;
-					border-radius: 4px;
-					border: none;
-					background-color: var(--category-color);
-					color: #fff;
-					cursor: pointer;
-				}
-
-				button:disabled {
-					background-color: #999;
-					cursor: not-allowed;
-				}
+				gap: 2rem;
+				margin-bottom: 1.5rem;
 			}
-		}
-	}
 
-	button {
-		margin-top: 2rem;
-		padding: 1.5rem 3rem;
-		font-size: 2rem;
-		border-radius: 4px;
-		border: none;
-		color: #fff;
-		background-color: rgba(255, 255, 255, 0.1);
-		cursor: pointer;
-		transition: background-color 0.1s ease-in-out;
-
-		&:hover {
-			background-color: rgba(255, 255, 255, 0.2);
+			header {
+				display: flex;
+				justify-content: flex-end;
+			}
 		}
 	}
 </style>

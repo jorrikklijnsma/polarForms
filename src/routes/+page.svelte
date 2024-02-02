@@ -1,6 +1,16 @@
+<script>
+	import Button from "../components/button.svelte";
+
+</script>
+
 <div class="titleWrapper is-white-page">
 	<h1>Welcome to polarForms</h1>
-	<a href="/questions">Start!</a>
+		<Button
+			buttonType="tertiary"
+			size="extraLarge"
+		>
+			<a href="/questions">Start!</a>
+		</Button>
 </div>
 
 <style lang="scss">
@@ -12,20 +22,6 @@
 		h1 {
 			color: var(--teal);
 			font-size: 3rem;
-		}
-
-		a {
-			background: var(--orange);
-			color: var(--white);
-			text-align: center;
-			font-size: 2rem;
-			padding: 1rem 1.5rem;
-			text-decoration: none;
-			border-radius: 0.25rem;
-
-			&:hover {
-				background: var(--dark-orange);
-			}
 		}
 	}
 </style>
