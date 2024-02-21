@@ -1,15 +1,16 @@
 <script>
 	import Button from "../components/button.svelte";
+  import { t } from '$lib/translations';
 
 </script>
 
 <div class="titleWrapper is-white-page">
-	<h1>Welcome to polarForms</h1>
+	<h1>{$t('home.title')}</h1>
 		<Button
-			buttonType="tertiary"
+			buttonType="fourth"
 			size="extraLarge"
 		>
-			<a href="/questions">Start!</a>
+			<a href="/questions">{$t('home.cta')}</a>
 		</Button>
 </div>
 

@@ -4,6 +4,7 @@
 	import { onMount, onDestroy } from 'svelte';
 	import { clearAnswers } from '../../utils/clear-answers';
 	import Button from '../../components/button.svelte';
+	import { t } from '$lib/translations';
 
 	let selectedQuestion: Question | undefined = undefined;
 	let isModalOpen: Boolean = false;
@@ -96,8 +97,9 @@
 						<span>Not answered</span>
 					{/if}	
 					<Button on:buttonClickedEvent={() => {openModal(question)}}
-						buttonType="fourth"
+						buttonType="secondary"
 						size="small"
+						iconName="pen"
 					>
 						Edit
 					</Button>
@@ -117,9 +119,9 @@
 {#if isModalOpen && selectedQuestion}
 	<div class="modal" style={`--category-color: ${categoryColor}`}>
 		<div class="modal-content">
-			<header>		
+			<header>
 				<Button on:buttonClickedEvent={closeModal}
-					buttonType="link"
+					buttonType="empty"
 					size="small"
 					>
 						x
@@ -133,13 +135,16 @@
 				on:buttonClickedEvent={() => {handleAnswer(option.value);
 							closeModal();}}
 				isDisabled={selectedQuestion.answer === option.value}
-				buttonType="fourth"
+				buttonType="secondary"
 			>
 				<u>{option.text.at(0)}</u>{option.text.slice(1)}
 			</Button>
 				{/each}
 			</div>
 
+			<footer class="max-text-width">
+				{$t('common.footer-note')}
+			</footer>
 		</div>
 	</div>
 {/if}
@@ -198,6 +203,11 @@
 			flex-direction: column;
 			gap: 1rem;
 
+			h2 {
+				font-weight: 400;
+				text-align: center;
+			}
+
 			.answer-options {
 				display: flex;
 				justify-content: center;
@@ -209,6 +219,15 @@
 			header {
 				display: flex;
 				justify-content: flex-end;
+			}
+
+			footer {
+				margin-block-start: 1rem;
+				padding-block-start: 1rem;
+				margin-inline: 1rem;
+				padding-inline: 1rem;
+				border-top: var(--blue) 2px solid;
+				color: var(--dark-grey);
 			}
 		}
 	}

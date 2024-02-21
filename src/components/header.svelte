@@ -2,22 +2,34 @@
   import { page } from '$app/stores';
 	import { questionsStore } from '../data/questions';
 	import Button from './button.svelte';
+  import { t, locales, locale } from '$lib/translations';
+
+	let nonActiveLocale = $locale === $locales[0] ? $locales[1] : $locales[0];
+
+	const changeLanguage = () => {
+		console.log(`changing language to "${nonActiveLocale}" from list of languages ${$locales.join(', ')}`);
+		// update cookie
+		document.cookie = `locale=${nonActiveLocale};path=/;max-age=31536000`;
+
+		locale.set(nonActiveLocale);
+		nonActiveLocale = $locale;
+	};
 
 	const pageLinks = [
 		{
-			name: 'Home',
+			name: 'home',
 			url: '/'
 		},
 		{
-			name: 'Questions',
+			name: 'questions',
 			url: '/questions'
 		},
 		{
-			name: 'Question list',
+			name: 'question_list',
 			url: '/question-list'
 		},
 		{
-			name: 'Chart',
+			name: 'chart',
 			url: '/chart'
 		}
 	]
@@ -51,18 +63,21 @@
 </script>
 
 <header>
-	<h1>Polar Forms</h1>
+	<h1>{$t('common.title')}</h1>
 	<nav>
 		<ul>
 			{#each pageLinks as link}
-				<li>
-					<Button buttonType="empty" isActive={$page.url.pathname === link.url}>
-						<a href={link.url}>{link.name}</a>
-					</Button>
-				</li>
+			<li>
+				<Button buttonType={$page.url.pathname === link.url ? '' : 'empty'}>
+					<a href={link.url}>{$t(`common.${link.name}`)}</a>
+				</Button>
+			</li>
 			{/each}
-			<li><Button buttonType="link" on:click={exportQuestions} class="export-button">Export</Button></li>
-			<li><Button buttonType="link" on:click={importQuestions}>Import</Button></li>
+		</ul>
+		<ul class="import-export">
+			<li><Button buttonType="empty" buttonClickedEvent={exportQuestions}>{$t('common.export')}</Button></li>
+			<li><Button buttonType="empty" buttonClickedEvent={importQuestions}>{$t('common.import')}</Button></li>
+			<li><Button buttonType="empty" size="small" on:buttonClickedEvent={() => {changeLanguage()}}>{`${$locales[0]} / ${$locales[1]}`	}</Button></li>
 		</ul>
 	</nav>
 </header>
@@ -82,28 +97,26 @@
 		}
 
 		nav {
+			display: flex;
+			flex-wrap: wrap;
+
 			ul {
 				display: flex;
+				align-items: center;
 				flex-wrap: wrap;
 				list-style: none;
 				gap: 2rem 1rem;
 
-				li {
-					button {
-						&.export-button {
-							margin-left: 4rem;
+				&.import-export {
+					margin-left: 2rem;
 
-							&::before {
-								content: '';
-								display: block;
-								position: absolute;
-								left: -2.5rem;
-								top: 0;
-								background: var(--white);
-								height: 40px;
-								width: 2px;
-							}
-						}
+					&::before {
+						content: '';
+						display: block;
+						background: var(--white);
+						height: 100%;
+						width: 1px;
+						margin-right: 3rem;;
 					}
 				}
 			}

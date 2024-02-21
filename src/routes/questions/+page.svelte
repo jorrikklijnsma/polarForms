@@ -4,6 +4,7 @@
 	import Button from '../../components/button.svelte';
 	import { get } from 'svelte/store';
 	import { onMount, onDestroy } from 'svelte';
+	import { t } from '$lib/translations';
 
 	let currentQuestionIndex = 0;
 	let currentQuestion: Question | undefined;
@@ -124,42 +125,28 @@
 
 <div class="question-card">
 	{#if startQuestionare}
-		<h2>Gefeliciteerd</h2>
+		<h2>{$t('questions.title')}</h2>
 		<p>
-			Deze vragenlijst is bedoeld om je eigen krachten en valkuilen uit te vinden op het gebied van empathische gewoontes in een professionele context. Vul het dan ook zo eerlijk mogelijk in. Het is geen harde wetenschap dus zie de resultaten als hulpmiddel en niet als absolute waarheid. 
+			{$t('questions.intro.section1')}
 		</p>
 		<p>
-			Bij het beantwoorden van de vragen, houd de volgende dingen in je achterhoofd:
+			{$t('questions.intro.section2')}
 		</p>
 		<ul>
-			<li>
-				Het gaat om empathische gewoontes op je werk. Je empathische gewoontes in je privéleven zijn voor nu niet relevant.</li>
-			<li>
-				Kijk naar je gedrag van de laatste 6 maanden. 
-			</li>
-			<li>
-				Denk er niet te lang over na. Luister naar je eerste ingeving.
-			</li>
-			<li>
-				Je mag deze stellingen zo breed interpreteren als je wil, zo lang het maar relevant is in een professionele context. 
-			</li>
-			<li>
-				Gesprek kun je ook interpreteren als interview, gebruikerstest, sollicitatiegesprek, etc. 
-			</li>
-			<li>
-				Gesprekspartner kun je ook interpreteren als klant, werknemer, deelnemer, etc.
-			</li>
+			{#each Array(5) as _, i}
+				<li>{$t(`questions.intro.list.${i+1}`)}</li>
+			{/each}	
 		</ul>
 		<p>
-			De vragenlijst is volledig anoniem. Je bent dus zelf verantwoordelijk voor het downloaden/opslaan van je resultaten.<br>
-			<strong>Vergeet dit niet</strong>, want deze zijn nodig om de workshop goed mee te kunnen doen. 
+			{$t('questions.intro.section3')}
+			{$t('questions.intro.section4')}
 		</p>
 
 		<Button
 			on:buttonClickedEvent={handleStart}
-			buttonType="tertiary"
+			buttonType="fourth"
 		>
-			{countAnsweredQuestions() === 0 ? "Start" : "Continue"}
+			{countAnsweredQuestions() === 0 ? $t('questions.cta') : $t('questions.continue')}
 		</Button>
 	{:else if currentQuestion}
 	<div class="pagination">
@@ -200,7 +187,7 @@ Gesprekspartner kun je ook interpreteren als klant, werknemer, deelnemer, etc.
 
 	<div class="clearAnwsers">
 		<Button on:buttonClickedEvent={() => handleClearAnswer()} buttonType="empty" size="small">
-			Clear answers
+		{$t('questions.clear_awnsers')}
 		</Button>
 	</div>
 	{:else}
@@ -212,11 +199,11 @@ Nogmaals, het is geen harde wetenschap dus zie de resultaten als hulpmiddel en n
 
 		<Button
 			on:buttonClickedEvent={handleStart}
-			buttonType="tertiary"
+			buttonType="fourth"
 		>
-		{countAnsweredQuestions() === 0 ? "Start" : "Continue"}
-		<a href="./chart">Go to the chart</a>
-		</Button>
+		{countAnsweredQuestions() === 0 ? $t('questions.cta') : $t('questions.continue')}
+	</Button>
+	<a href="./chart">{$t('questions.go-to-chart')}</a>
 	{/if}
 </div>
 
