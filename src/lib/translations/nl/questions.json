@@ -1,0 +1,20 @@
+{
+	"title": "Welkom bij de Empathic Habits test",
+	"intro": {
+		"section1": "Deze vragenlijst is bedoeld om je eigen krachten en valkuilen uit te vinden op het gebied van empathische gewoontes in een professionele context. Vul het dan ook zo eerlijk mogelijk in. Het is geen harde wetenschap dus zie de resultaten als hulpmiddel en niet als absolute waarheid.",
+		"section2": "Bij het beantwoorden van de vragen, houd de volgende dingen in je achterhoofd:",
+		"list": {
+			"1": "Het gaat om empathische gewoontes op je werk. Je empathische gewoontes in je privéleven zijn voor nu niet relevant.",
+			"2": "Kijk naar je gedrag van de laatste 6 maanden. ",
+			"3": "Denk er niet te lang over na. Luister naar je eerste ingeving.",
+			"4": "Je mag deze stellingen zo breed interpreteren als je wil, zo lang het maar relevant is in een professionele context. ",
+			"5": "Gesprek kun je ook interpreteren als interview, gebruikerstest, sollicitatiegesprek, etc. ",
+			"6": "Gesprekspartner kun je ook interpreteren als klant, werknemer, deelnemer, etc."
+		},
+		"section3": "De vragenlijst is volledig anoniem. Je bent dus zelf verantwoordelijk voor het downloaden/opslaan van je resultaten. ",
+		"section4": "Vergeet dit niet, want deze zijn nodig om de workshop goed mee te kunnen doen. "
+	},
+	"cta": "Start",
+	"continue": "Verder gaan",
+	"go-to-chart": "Ga naar de grafiek"
+}

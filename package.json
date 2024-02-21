@@ -32,6 +32,7 @@
 	"dependencies": {
 		"@fortawesome/fontawesome-free": "^6.5.1",
 		"@types/chart.js": "^2.9.37",
-		"chart.js": "^4.3.3"
+		"chart.js": "^4.3.3",
+		"sveltekit-i18n": "^2.4.2"
 	}
 }
