@@ -53,3 +53,29 @@ blockquote,
 pre {
 	max-width: var(--max-text-width);
 }
+
+// <uniquifier>: Use a uniquifier for the class name
+.roboto-condensed-bold {
+	font-family: 'Roboto Condensed', sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 700;
+	font-style: normal;
+}
+
+.roboto-regular {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
+.roboto-bold {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 700;
+	font-style: normal;
+}
+
+.roboto-regular-italic {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	font-style: italic;
+}
