@@ -1,30 +1,14 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
+	import '@fortawesome/fontawesome-free/css/all.min.css'
 
-	type ButtonType = 'primary' | 'secondary' | 'tertiary' | 'fourth' | 'link' | 'empty';
+	type ButtonType = 'secondary' | 'tertiary' | 'fourth' | 'empty' | '';
 	type ButtonSize ='extraLarge' | 'large' | 'medium' | 'small';
-	export let buttonType: ButtonType = 'primary';
+	export let buttonType: ButtonType = '';
 	export let size: ButtonSize = 'medium';
-	export let isActive: Boolean = false;
 	export let isDisabled: boolean | null | undefined = false;
+	export let iconName: string | null | undefined = null;
 
-	const buttonTypeColors = {
-		primary: 'var(--teal)',
-		secondary: 'var(--blue)',
-		tertiary: 'var(--orange)',
-		fourth: 'var(--light-blue)',
-		link: 'var(--transparent)',
-		empty: 'var(--transparent)'
-	};
-	
-	const buttonTypeHoverColors = {
-		primary: 'var(--blue)',
-		secondary: 'var(--light-blue)',
-		tertiary: 'var(--light-orange)',
-		fourth: 'var(--blue)',
-		link: 'var(--blue)',
-		empty: 'transparent'
-	};
 
 	const buttonFontSizes = {
 		extraLarge: 'var(--font-size-button-extra-large)',
@@ -41,18 +25,21 @@
 </script>
 
 <button on:click={registerClick}
-class="{buttonType} {isActive ? 'active' : ''} ${$$props.class}" disabled={isDisabled} style="--background-color: {buttonTypeColors[buttonType]}; --background-hover-color: {buttonTypeHoverColors[buttonType]}; --font-size: {buttonFontSizes[size]}">
+class="{buttonType} ${$$props.class}" disabled={isDisabled} style="--font-size: {buttonFontSizes[size]}">
+	{#if iconName}
+		<i class="fa-solid fa-{iconName}"></i>
+	{/if}
 	<slot></slot>
 </button>
 
 <style lang="scss">
 	button {
 		display: block;
-		background: var(--background-color);
+		background: var(--teal);
 		font-size: var(--font-size);
 		text-align: center;
 		border-radius: 0.25rem;
-		color: inherit;
+		color:  var(--white);
 		font-weight: bold;
 		text-decoration: none;
 		padding: 0.5rem 1rem;
@@ -63,20 +50,24 @@ class="{buttonType} {isActive ? 'active' : ''} ${$$props.class}" disabled={isDis
 		cursor: pointer;
 		transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
 
-		&.tertiary {
-			color: var(--white);
+		&.secondary {
+			background: var(--light-blue);
+			color: var(--blue);
 		}
 
+		&.tertiary {
+			background: var(--white);
+			color: var(--black);
+		}
 
 		&.fourth {
-			&:hover {
-				color: var(--white);
-			}
-		}
-
-		&.active {
-			background: var(--teal);
+			background: var(--orange);
 			color: var(--white);
+		}
+		
+		&.empty{
+			background: inherit;
+			color: inherit;
 		}
 
 		&:disabled {
@@ -84,12 +75,14 @@ class="{buttonType} {isActive ? 'active' : ''} ${$$props.class}" disabled={isDis
 			cursor: not-allowed;
 
 			&:hover {
-				background: var(--background-color);
+				background: inherit;
+				color: inherit;
 			}
 		}
 
 		&:hover {
-			background: var(--background-hover-color);
+			background: var(--blue);
+			color: var(--white);;
 		}
 	}
 </style>
