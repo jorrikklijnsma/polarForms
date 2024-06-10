@@ -187,7 +187,7 @@ Gesprekspartner kun je ook interpreteren als klant, werknemer, deelnemer, etc.
 
 	<div class="clearAnwsers">
 		<Button on:buttonClickedEvent={() => handleClearAnswer()} buttonType="empty" size="small">
-		{$t('questions.clear_awnsers')}
+		{$t('questions.clear')}
 		</Button>
 	</div>
 	{:else}
