@@ -89,7 +89,7 @@
 	<ul class="questions-list">
 		{#each $questionsStore as question (question.id)}
 			<li style={`--category-color: ${getCategoryColorFromQuestion(question)}`}>
-				{question.text}
+			{$t(`questions.all_questions.${parseInt(question.id)}`)}
 				<div class="actions">
 					{#if question.answer}
 						<span>{answerOptions.find((answer) => answer.value === question.answer)?.text}</span>
@@ -127,7 +127,9 @@
 						x
 				</Button>
 			</header>
-			<h2>{selectedQuestion.text}</h2>
+			<h2>
+			{$t(`questions.all_questions.${parseInt(selectedQuestion.id)}`)}
+			</h2>
 			<div class="answer-options">
 				{#each answerOptions as option}
 

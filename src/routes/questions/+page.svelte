@@ -162,7 +162,9 @@
 			isDisabled={currentQuestionIndex === totalQuestionCount - 1 || currentQuestionIndex === findFirstUnansweredQuestionIndex()}
 		> &gt; </Button>
 	</div>
-		<h2>{currentQuestion.text}</h2>
+		<h2 class="question-text">
+			{$t(`questions.all_questions.${parseInt(currentQuestion.id)}`)}
+		</h2>
 		
 		<div class="answer-options">
 			{#each answerOptions as option (option.value)}
@@ -225,10 +227,15 @@ Nogmaals, het is geen harde wetenschap dus zie de resultaten als hulpmiddel en n
 	}
 
 	h2 {
-		font-size: 3.5rem;
+		font-size: 2rem;
 		margin-bottom: 1rem;
 		text-align: center;
 		font-weight: 400;
+
+		&.question-text {
+			min-height: 12rem;
+			line-height: 1.2;
+		}
 	}
 
 	.pagination {
