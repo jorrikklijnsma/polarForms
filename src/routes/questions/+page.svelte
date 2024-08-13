@@ -180,10 +180,7 @@
 
 	<footer>
 		<p>
-			Je mag deze stellingen zo breed interpreteren als je wil, zo lang het maar relevant is in een professionele context.<br>
-Gesprek kun je ook interpreteren als interview, gebruikerstest, sollicitatiegesprek, etc.<br>
-Gesprekspartner kun je ook interpreteren als klant, werknemer, deelnemer, etc.
-
+			{$t('common.footer-note')}
 		</p>
 	</footer>
 
@@ -193,10 +190,11 @@ Gesprekspartner kun je ook interpreteren als klant, werknemer, deelnemer, etc.
 		</Button>
 	</div>
 	{:else}
-		<h2>Gefeliciteerd</h2>
+	<h2>
+			{$t('questions.congratulations')}
+		</h2>
 		<p>
-			Je hebt alle 45 vragen beantwoord. Klik op de onderstaande knop om je resultaten te zien. Mocht je nog antwoorden willen aanpassen, kan dat op de Question List pagina. Hier vindt je een overzicht van alle vragen met daarbij jouw antwoorden.
-Nogmaals, het is geen harde wetenschap dus zie de resultaten als hulpmiddel en niet als absolute waarheid. Vergeet niet je resultaten op te slaan, want deze heb je nodig tijdens de workshop.  
+			{$t('questions.completed')}
 		</p>
 
 		<Button

@@ -14,6 +14,8 @@
 		"section3": "De vragenlijst is volledig anoniem. Je bent dus zelf verantwoordelijk voor het downloaden/opslaan van je resultaten. ",
 		"section4": "Vergeet dit niet, want deze zijn nodig om de workshop goed mee te kunnen doen. "
 	},
+	"completed": "Je hebt alle 45 vragen beantwoord. Klik op de onderstaande knop om je resultaten te zien. Mocht je nog antwoorden willen aanpassen, kan dat op de Question List pagina. Hier vindt je een overzicht van alle vragen met daarbij jouw antwoorden. Nogmaals, het is geen harde wetenschap dus zie de resultaten als hulpmiddel en niet als absolute waarheid. Vergeet niet je resultaten op te slaan, want deze heb je nodig tijdens de workshop.  ",
+	"congratulations": "Gefeliciteerd",
 	"clear": "Antwoord wissen",
 	"cta": "Start",
 	"continue": "Verder gaan",
@@ -40,7 +42,7 @@
 		"19": "In gesprekken, kan ik aflezen aan het gedrag van mijn respondent of ik mijn gespreksaanpak moet aanpassen",
 		"20": "In gesprekken, zorg ik ervoor dat mijn gesprekspartner zich gewaardeerd en gerespecteerd voelt",
 		"21": "Wanneer ik mensen zoek om mee in gesprek te gaan, weet ik hoe ik ze enthousiast kan krijgen om mee te doen",
-		"22": "Tijdens en/of voorafgaand aan gesprekken, leg ik mijn gesprekspartner wat hij/zij kan verwachten",
+		"22": "Tijdens en/of voorafgaand aan gesprekken, leg ik mijn gesprekspartner uit wat hij/zij kan verwachten",
 		"23": "Wanneer ik gesprekken voorbereid, weet ik hoe ik ervoor kan zorgen dat het niet alleen waardevol is voor mij, maar ook voor mijn gesprekspartner",
 		"24": "Ik weet met welke mensen ik in gesprek moet gaan om zo nuttig mogelijke informatie te verzamelen",
 		"25": "Ik kan een (professioneel) gesprek gaande houden",

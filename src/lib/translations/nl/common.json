@@ -1,9 +1,10 @@
 {
 	"title": "Empathic Habits test",
-	"export": "Exporteren",
-	"import": "Importeren",
+	"export": "Export",
+	"import": "Import",
 	"home": "Home",
 	"questions": "Vragen",
 	"question_list": "Vragenlijst",
-	"chart": "Grafiek"
+	"chart": "Diagram",
+	"footer-note": "Je mag deze stellingen zo breed interpreteren als je wil, zo lang het maar relevant is in een professionele context. Gesprek kun je ook interpreteren als interview, gebruikerstest, sollicitatiegesprek, etc. Gesprekspartner kun je ook interpreteren als klant, werknemer, deelnemer, etc."
 }
