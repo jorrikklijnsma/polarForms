@@ -1,15 +1,17 @@
 <script lang="ts">
-  import { page } from '$app/stores';
+	import { page } from '$app/stores';
 	import { questionsStore } from '../data/questions';
 	import Button from './button.svelte';
-  import { t, locales, locale } from '$lib/translations';
-	
-	const handleChange = ({ currentTarget }: {currentTarget: HTMLSelectElement}) => {
-		console.log(`changing language to "${currentTarget.value}" from list of languages ${$locales.join(', ')}`);
-    const { value } = currentTarget;
+	import { t, locales, locale } from '$lib/translations';
 
-    document.cookie = `lang=${value} ;path=/;max-age=31536000`;
-  };
+	const handleChange = ({ currentTarget }: { currentTarget: HTMLSelectElement }) => {
+		console.log(
+			`changing language to "${currentTarget.value}" from list of languages ${$locales.join(', ')}`
+		);
+		const { value } = currentTarget;
+
+		document.cookie = `lang=${value} ;path=/;max-age=31536000`;
+	};
 
 	const pageLinks = [
 		{
@@ -28,7 +30,7 @@
 			name: 'chart',
 			url: '/chart'
 		}
-	]
+	];
 
 	const exportQuestions = () => {
 		const questions = JSON.stringify($questionsStore);
@@ -63,20 +65,28 @@
 	<nav>
 		<ul>
 			{#each pageLinks as link}
-			<li>
-				<Button buttonType={$page.url.pathname === link.url ? '' : 'empty'}>
-					<a href={link.url}>{$t(`common.${link.name}`)}</a>
-				</Button>
-			</li>
+				<li>
+					<Button buttonType={$page.url.pathname === link.url ? '' : 'empty'}>
+						<a href={link.url}>{$t(`common.${link.name}`)}</a>
+					</Button>
+				</li>
 			{/each}
 		</ul>
 		<ul class="import-export">
-			<li><Button buttonType="empty" buttonClickedEvent={exportQuestions}>{$t('common.export')}</Button></li>
-			<li><Button buttonType="empty" buttonClickedEvent={importQuestions}>{$t('common.import')}</Button></li>
 			<li>
-				<select bind:value="{$locale}" on:change={handleChange}>
+				<Button buttonType="empty" buttonClickedEvent={exportQuestions}
+					>{$t('common.export')}</Button
+				>
+			</li>
+			<li>
+				<Button buttonType="empty" buttonClickedEvent={importQuestions}
+					>{$t('common.import')}</Button
+				>
+			</li>
+			<li>
+				<select bind:value={$locale} on:change={handleChange}>
 					{#each $locales as value}
-						<option value="{value}">{$t(`lang.${value}`)}</option>
+						<option {value}>{$t(`lang.${value}`)}</option>
 					{/each}
 				</select>
 			</li>
@@ -121,7 +131,7 @@
 						&:focus {
 							box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 						}
-						
+
 						&:hover {
 							box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 2px var(--teal);
 							cursor: pointer;
@@ -130,7 +140,6 @@
 						option {
 							background: var(--white);
 							color: var(--black);
-
 						}
 					}
 
@@ -140,7 +149,7 @@
 						background: var(--white);
 						height: 100%;
 						width: 1px;
-						margin-right: 3rem;;
+						margin-right: 3rem;
 					}
 				}
 			}

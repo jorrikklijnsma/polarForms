@@ -53,7 +53,6 @@
 		}
 	});
 
-
 	// Computed property to retrieve the category color
 	$: categoryColor = selectedQuestion ? getCategoryColorFromQuestion(selectedQuestion) : '';
 </script>
@@ -63,15 +62,23 @@
 	<ul class="questions-list">
 		{#each $questionsStore as question (question.id)}
 			<li style={`--category-color: ${getCategoryColorFromQuestion(question)}`}>
-			{$t(`questions.all_questions.${parseInt(question.id)}`)}
+				{$t(`questions.all_questions.${parseInt(question.id)}`)}
 				<div class="actions">
 					{#if question.answer}
 						<span>
-				{$t(`questions.answer-labels.${answerOptions.find((answer) => answer.value === question.answer)?.text}`)}</span>
+							{$t(
+								`questions.answer-labels.${
+									answerOptions.find((answer) => answer.value === question.answer)?.text
+								}`
+							)}</span
+						>
 					{:else}
 						<span>Not answered</span>
-					{/if}	
-					<Button on:buttonClickedEvent={() => {openModal(question)}}
+					{/if}
+					<Button
+						on:buttonClickedEvent={() => {
+							openModal(question);
+						}}
 						buttonType="secondary"
 						size="small"
 						iconName="pen"
@@ -82,10 +89,7 @@
 			</li>
 		{/each}
 	</ul>
-	<Button on:buttonClickedEvent={clearAnswers}
-		buttonType="fourth"
-		size="small"
-		>
+	<Button on:buttonClickedEvent={clearAnswers} buttonType="fourth" size="small">
 		Clear anwsers
 	</Button>
 </section>
@@ -95,27 +99,23 @@
 	<div class="modal" style={`--category-color: ${categoryColor}`}>
 		<div class="modal-content">
 			<header>
-				<Button on:buttonClickedEvent={closeModal}
-					buttonType="empty"
-					size="small"
-					>
-						x
-				</Button>
+				<Button on:buttonClickedEvent={closeModal} buttonType="empty" size="small">x</Button>
 			</header>
 			<h2>
-			{$t(`questions.all_questions.${parseInt(selectedQuestion.id)}`)}
+				{$t(`questions.all_questions.${parseInt(selectedQuestion.id)}`)}
 			</h2>
 			<div class="answer-options">
 				{#each answerOptions as option}
-
-			<Button
-				on:buttonClickedEvent={() => {handleAnswer(option.value);
-							closeModal();}}
-				isDisabled={selectedQuestion.answer === option.value}
-				buttonType="secondary"
-			>
-				{$t(`questions.answer-labels.${option.text}`)}
-			</Button>
+					<Button
+						on:buttonClickedEvent={() => {
+							handleAnswer(option.value);
+							closeModal();
+						}}
+						isDisabled={selectedQuestion.answer === option.value}
+						buttonType="secondary"
+					>
+						{$t(`questions.answer-labels.${option.text}`)}
+					</Button>
 				{/each}
 			</div>
 
@@ -125,7 +125,6 @@
 		</div>
 	</div>
 {/if}
-
 
 <style lang="scss">
 	.questions-list {
@@ -146,7 +145,7 @@
 			&:hover {
 				transform: scale(1.01);
 			}
-			
+
 			.actions {
 				display: flex;
 				flex-direction: column;
@@ -156,7 +155,6 @@
 			}
 		}
 	}
-
 
 	.modal {
 		position: fixed;

@@ -1,20 +1,19 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import '@fortawesome/fontawesome-free/css/all.min.css'
+	import '@fortawesome/fontawesome-free/css/all.min.css';
 
 	type ButtonType = 'secondary' | 'tertiary' | 'fourth' | 'empty' | '';
-	type ButtonSize ='extraLarge' | 'large' | 'medium' | 'small';
+	type ButtonSize = 'extraLarge' | 'large' | 'medium' | 'small';
 	export let buttonType: ButtonType = '';
 	export let size: ButtonSize = 'medium';
 	export let isDisabled: boolean | null | undefined = false;
 	export let iconName: string | null | undefined = null;
 
-
 	const buttonFontSizes = {
 		extraLarge: 'var(--font-size-button-extra-large)',
 		large: 'var(--font-size-button-large)',
 		medium: 'var(--font-size-button-medium)',
-		small: 'var(---font-size-button-small)',
+		small: 'var(---font-size-button-small)'
 	};
 
 	const dispatch = createEventDispatcher();
@@ -24,12 +23,16 @@
 	}
 </script>
 
-<button on:click={registerClick}
-class="{buttonType} ${$$props.class}" disabled={isDisabled} style="--font-size: {buttonFontSizes[size]}">
+<button
+	on:click={registerClick}
+	class="{buttonType} ${$$props.class}"
+	disabled={isDisabled}
+	style="--font-size: {buttonFontSizes[size]}"
+>
 	{#if iconName}
-		<i class="fa-solid fa-{iconName}"></i>
+		<i class="fa-solid fa-{iconName}" />
 	{/if}
-	<slot></slot>
+	<slot />
 </button>
 
 <style lang="scss">
@@ -39,7 +42,7 @@ class="{buttonType} ${$$props.class}" disabled={isDisabled} style="--font-size: 
 		font-size: var(--font-size);
 		text-align: center;
 		border-radius: 0.25rem;
-		color:  var(--white);
+		color: var(--white);
 		font-weight: bold;
 		text-decoration: none;
 		padding: 0.5rem 1rem;
@@ -64,14 +67,14 @@ class="{buttonType} ${$$props.class}" disabled={isDisabled} style="--font-size: 
 			background: var(--orange);
 			color: var(--white);
 		}
-		
-		&.empty{
+
+		&.empty {
 			background: inherit;
 			color: inherit;
 		}
 
 		&:disabled {
-			opacity: .3;
+			opacity: 0.3;
 			cursor: not-allowed;
 
 			&:hover {
@@ -82,7 +85,7 @@ class="{buttonType} ${$$props.class}" disabled={isDisabled} style="--font-size: 
 
 		&:hover {
 			background: var(--blue);
-			color: var(--white);;
+			color: var(--white);
 		}
 	}
 </style>

@@ -37,44 +37,45 @@
 		return $questionsStore.filter((question) => question.answer).length;
 	};
 
-	const findFirstUnansweredQuestionIndex = (): number => $questionsStore.findIndex((question) => !question.answer);
+	const findFirstUnansweredQuestionIndex = (): number =>
+		$questionsStore.findIndex((question) => !question.answer);
 
-	const sortQuestions = (questions: Question[]) => questions.sort((a: Question, b: Question) => parseInt(a.id) - parseInt(b.id));
+	const sortQuestions = (questions: Question[]) =>
+		questions.sort((a: Question, b: Question) => parseInt(a.id) - parseInt(b.id));
 
 	const handleClearAnswer = () => {
-		questionsStore.update(questions => {
-			questions.forEach(question => {
+		questionsStore.update((questions) => {
+			questions.forEach((question) => {
 				question.answer = undefined;
 			});
-			
+
 			// Save to local storage
 			localStorage.setItem('questions', JSON.stringify(questions));
-			
+
 			return [...questions];
-		})
+		});
 	};
-	
+
 	const handleStart = () => {
 		console.log('start');
 		startQuestionare = false;
 	};
-	
-	onMount(() => {
 
+	onMount(() => {
 		//sort on ID
-		questionsStore.update(questions => sortQuestions(questions));
+		questionsStore.update((questions) => sortQuestions(questions));
 
 		// On initial load, check if there are any saved questions in local storage
 		const savedQuestions = localStorage.getItem('questions');
 
 		if (savedQuestions) {
 			//sort on ID
-			const sortedLocalStorage = sortQuestions(JSON.parse(savedQuestions))
+			const sortedLocalStorage = sortQuestions(JSON.parse(savedQuestions));
 			questionsStore.set(sortedLocalStorage);
 		}
 
 		totalQuestionCount = $questionsStore.length;
-		
+
 		setNewCurrentQuestion();
 	});
 
@@ -108,79 +109,83 @@
 		</p>
 		<ul>
 			{#each Array(5) as _, i}
-				<li>{$t(`questions.intro.list.${i+1}`)}</li>
-			{/each}	
+				<li>{$t(`questions.intro.list.${i + 1}`)}</li>
+			{/each}
 		</ul>
 		<p>
 			{$t('questions.intro.section3')}
 			{$t('questions.intro.section4')}
 		</p>
 
-		<Button
-			on:buttonClickedEvent={handleStart}
-			buttonType="fourth"
-		>
+		<Button on:buttonClickedEvent={handleStart} buttonType="fourth">
 			{countAnsweredQuestions() === 0 ? $t('questions.cta') : $t('questions.continue')}
 		</Button>
 	{:else if currentQuestion}
-	<div class="pagination">
-		<Button on:buttonClickedEvent={() => {movePage(-1)}}
-			buttonType="empty"
-			isDisabled={currentQuestionIndex === 0}
-			> &lt; </Button>
-		<span>
-			{currentQuestion.id} / {totalQuestionCount}
-		</span>
-		<Button  on:buttonClickedEvent={() => {movePage(1)}}
-			buttonType="empty"
-			isDisabled={currentQuestionIndex === totalQuestionCount - 1 || currentQuestionIndex === findFirstUnansweredQuestionIndex()}
-		> &gt; </Button>
-	</div>
+		<div class="pagination">
+			<Button
+				on:buttonClickedEvent={() => {
+					movePage(-1);
+				}}
+				buttonType="empty"
+				isDisabled={currentQuestionIndex === 0}
+			>
+				&lt;
+			</Button>
+			<span>
+				{currentQuestion.id} / {totalQuestionCount}
+			</span>
+			<Button
+				on:buttonClickedEvent={() => {
+					movePage(1);
+				}}
+				buttonType="empty"
+				isDisabled={currentQuestionIndex === totalQuestionCount - 1 ||
+					currentQuestionIndex === findFirstUnansweredQuestionIndex()}
+			>
+				&gt;
+			</Button>
+		</div>
 		<h2 class="question-text">
 			{$t(`questions.all_questions.${parseInt(currentQuestion.id)}`)}
 		</h2>
-		
+
 		<div class="answer-options">
 			{#each answerOptions as option (option.value)}
-			<Button
-				on:buttonClickedEvent={() => handleAnswer(option.value)}
-				isDisabled={currentQuestion.answer === option.value}
-				buttonType="fourth"
-			>
-				{$t(`questions.answer-labels.${option.text}`)}
+				<Button
+					on:buttonClickedEvent={() => handleAnswer(option.value)}
+					isDisabled={currentQuestion.answer === option.value}
+					buttonType="fourth"
+				>
+					{$t(`questions.answer-labels.${option.text}`)}
+				</Button>
+			{/each}
+		</div>
+
+		<footer>
+			<p>
+				{$t('common.footer-note')}
+			</p>
+		</footer>
+
+		<div class="clearAnwsers">
+			<Button on:buttonClickedEvent={() => handleClearAnswer()} buttonType="empty" size="small">
+				{$t('questions.clear')}
 			</Button>
-		{/each}
-	</div>
-
-	<footer>
-		<p>
-			{$t('common.footer-note')}
-		</p>
-	</footer>
-
-	<div class="clearAnwsers">
-		<Button on:buttonClickedEvent={() => handleClearAnswer()} buttonType="empty" size="small">
-		{$t('questions.clear')}
-		</Button>
-	</div>
+		</div>
 	{:else}
-	<h2>
+		<h2>
 			{$t('questions.congratulations')}
 		</h2>
 		<p>
 			{$t('questions.completed')}
 		</p>
 
-		<Button
-			on:buttonClickedEvent={handleStart}
-			buttonType="fourth"
-		>
-		{countAnsweredQuestions() === 0 ? $t('questions.cta') : $t('questions.continue')}
-	</Button>
-	<a href="./chart">{$t('questions.go-to-chart')}</a>
+		<Button on:buttonClickedEvent={handleStart} buttonType="fourth">
+			{countAnsweredQuestions() === 0 ? $t('questions.cta') : $t('questions.continue')}
+		</Button>
+		<a href="./chart">{$t('questions.go-to-chart')}</a>
 	{/if}
 </div>
-
 
 <style>
 	.question-card {

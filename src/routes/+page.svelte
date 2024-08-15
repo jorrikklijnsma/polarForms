@@ -1,17 +1,13 @@
 <script>
-	import Button from "../components/button.svelte";
-  import { t } from '$lib/translations';
-
+	import Button from '../components/button.svelte';
+	import { t } from '$lib/translations';
 </script>
 
 <div class="titleWrapper is-white-page">
 	<h1>{$t('home.title')}</h1>
-		<Button
-			buttonType="fourth"
-			size="extraLarge"
-		>
-			<a href="/questions">{$t('home.cta')}</a>
-		</Button>
+	<Button buttonType="fourth" size="extraLarge">
+		<a href="/questions">{$t('home.cta')}</a>
+	</Button>
 </div>
 
 <style lang="scss">

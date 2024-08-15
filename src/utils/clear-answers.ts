@@ -3,8 +3,8 @@ import { questionsStore } from '../data/questions';
 export const clearAnswers = () => {
 	console.log('Clearing answers...');
 	// Update the store with the cleared answers
-	questionsStore.update(questions => {
-		questions.forEach(question => {
+	questionsStore.update((questions) => {
+		questions.forEach((question) => {
 			question.answer = undefined;
 		});
 
