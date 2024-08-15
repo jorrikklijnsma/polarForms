@@ -3,17 +3,13 @@
 	import { questionsStore } from '../data/questions';
 	import Button from './button.svelte';
   import { t, locales, locale } from '$lib/translations';
+	
+	const handleChange = ({ currentTarget }: {currentTarget: HTMLSelectElement}) => {
+		console.log(`changing language to "${currentTarget.value}" from list of languages ${$locales.join(', ')}`);
+    const { value } = currentTarget;
 
-	let nonActiveLocale = $locale === $locales[0] ? $locales[1] : $locales[0];
-
-	const changeLanguage = () => {
-		console.log(`changing language to "${nonActiveLocale}" from list of languages ${$locales.join(', ')}`);
-		// update cookie
-		document.cookie = `locale=${nonActiveLocale};path=/;max-age=31536000`;
-
-		locale.set(nonActiveLocale);
-		nonActiveLocale = $locale;
-	};
+    document.cookie = `lang=${value} ;path=/;max-age=31536000`;
+  };
 
 	const pageLinks = [
 		{
@@ -77,7 +73,13 @@
 		<ul class="import-export">
 			<li><Button buttonType="empty" buttonClickedEvent={exportQuestions}>{$t('common.export')}</Button></li>
 			<li><Button buttonType="empty" buttonClickedEvent={importQuestions}>{$t('common.import')}</Button></li>
-			<li><Button buttonType="empty" size="small" on:buttonClickedEvent={() => {changeLanguage()}}>{`${$locales[0]} / ${$locales[1]}`	}</Button></li>
+			<li>
+				<select bind:value="{$locale}" on:change={handleChange}>
+					{#each $locales as value}
+						<option value="{value}">{$t(`lang.${value}`)}</option>
+					{/each}
+				</select>
+			</li>
 		</ul>
 	</nav>
 </header>
@@ -109,6 +111,28 @@
 
 				&.import-export {
 					margin-left: 2rem;
+
+					select {
+						padding: 0.5rem;
+						border-radius: 4px;
+						outline: none;
+						border: none;
+
+						&:focus {
+							box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+						}
+						
+						&:hover {
+							box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 2px var(--teal);
+							cursor: pointer;
+						}
+
+						option {
+							background: var(--white);
+							color: var(--black);
+
+						}
+					}
 
 					&::before {
 						content: '';

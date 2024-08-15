@@ -20,6 +20,12 @@
 	"cta": "Start",
 	"continue": "Continue",
 	"go-to-chart": "Go to chart",
+	"answer-labels": {
+		"never": "Never",
+		"sometimes": "Sometimes",
+		"often": "Often",
+		"always": "Always"
+	},
 	"all_questions": {
 		"1": "If I disagree with my conversation partner, I can keep my opinion to myself",
 		"2": "In conversations, I keep my own opinions to myself",

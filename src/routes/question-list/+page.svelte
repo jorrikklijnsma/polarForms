@@ -9,12 +9,6 @@
 	let selectedQuestion: Question | undefined = undefined;
 	let isModalOpen: Boolean = false;
 
-	// Create a key to answer value mapping
-	let keyAnswerMap: Record<string, number> = {};
-	answerOptions.forEach((option) => {
-		keyAnswerMap[option.text.at(0)!.toString().toLowerCase()] = option.value;
-	});
-
 	const openModal = (question: Question) => {
 		selectedQuestion = question;
 		isModalOpen = true;
@@ -27,17 +21,6 @@
 
 	const getCategoryColorFromQuestion = (question: Question) =>
 		categoryColors[question.category as Category];
-
-	// Handle keydown events
-	const handleKeydown = (event: KeyboardEvent) => {
-		const answer = keyAnswerMap[event.key];
-		if (answer) {
-			handleAnswer(answer);
-			closeModal();
-		} else if (event.key === 'Escape') {
-			closeModal();
-		}
-	};
 
 	const handleAnswer = (value: number) => {
 		if (selectedQuestion) {
@@ -68,17 +51,8 @@
 			});
 			questionsStore.set(sortedQuestionsByCategory);
 		}
-
-		// Add event listener
-		window.addEventListener('keydown', handleKeydown);
 	});
 
-	// Cleanup on component unmount
-	onDestroy(() => {
-    if (typeof window !== 'undefined') {
-        window.removeEventListener('keydown', handleKeydown);
-    }
-	});
 
 	// Computed property to retrieve the category color
 	$: categoryColor = selectedQuestion ? getCategoryColorFromQuestion(selectedQuestion) : '';
@@ -92,7 +66,8 @@
 			{$t(`questions.all_questions.${parseInt(question.id)}`)}
 				<div class="actions">
 					{#if question.answer}
-						<span>{answerOptions.find((answer) => answer.value === question.answer)?.text}</span>
+						<span>
+				{$t(`questions.answer-labels.${answerOptions.find((answer) => answer.value === question.answer)?.text}`)}</span>
 					{:else}
 						<span>Not answered</span>
 					{/if}	
@@ -139,7 +114,7 @@
 				isDisabled={selectedQuestion.answer === option.value}
 				buttonType="secondary"
 			>
-				<u>{option.text.at(0)}</u>{option.text.slice(1)}
+				{$t(`questions.answer-labels.${option.text}`)}
 			</Button>
 				{/each}
 			</div>

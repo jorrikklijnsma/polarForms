@@ -2,7 +2,6 @@
 	import { questionsStore, answerOptions, categoryColors } from '../../data/questions';
 	import type { Question, Category } from '../../data/questions';
 	import Button from '../../components/button.svelte';
-	import { get } from 'svelte/store';
 	import { onMount, onDestroy } from 'svelte';
 	import { t } from '$lib/translations';
 
@@ -11,21 +10,6 @@
 
 	let startQuestionare = true;
 	let totalQuestionCount = 0;
-
-	// Create a key to answer value mapping
-	let keyAnswerMap: Record<string, number> = {};
-	answerOptions.forEach((option) => {
-		keyAnswerMap[option.text.at(0)!.toString().toLowerCase()] = option.value;
-		console.log(keyAnswerMap);
-	});
-
-	// Handle keydown events
-	const handleKeydown = (event: KeyboardEvent) => {
-		const answer = keyAnswerMap[event.key];
-		if (answer) {
-			handleAnswer(answer);
-		}
-	};
 
 	const setNewCurrentQuestion = () => {
 		if (findFirstUnansweredQuestionIndex() === -1) {
@@ -92,17 +76,7 @@
 		totalQuestionCount = $questionsStore.length;
 		
 		setNewCurrentQuestion();
-
-		// Add event listener
-		window.addEventListener('keydown', handleKeydown);
 	});
-
-	// Cleanup on component unmount
-	onDestroy(() => {
-    if (typeof window !== 'undefined') {
-        window.removeEventListener('keydown', handleKeydown);
-    }
-});
 
 	const handleAnswer = (value: number) => {
 		if (currentQuestion) {
@@ -173,7 +147,7 @@
 				isDisabled={currentQuestion.answer === option.value}
 				buttonType="fourth"
 			>
-				<u>{option.text.at(0)}</u>{option.text.slice(1)}
+				{$t(`questions.answer-labels.${option.text}`)}
 			</Button>
 		{/each}
 	</div>

@@ -1,6 +1,7 @@
 import { writable } from 'svelte/store';
 import type { Writable } from 'svelte/store';
 import { shuffleArray } from '../utils/shuffle-array';
+import { t } from '$lib/translations';
 
 type AnswerOption = {
 	text: string;
@@ -262,10 +263,10 @@ export const questionsStore: Writable<QuestionsArray> = writable(shuffleArray(qu
 export const currentQuestionStore: Writable<Question | undefined> = writable(undefined);
 
 export const answerOptions: AnswerOption[] = [
-	{ text: 'nooit', value: 1 },
-	{ text: 'soms', value: 2 },
-	{ text: 'vaak', value: 3 },
-	{ text: 'altijd', value: 4 }
+	{ text: 'never', value: 1 },
+	{ text: 'sometimes', value: 2 },
+	{ text: 'often', value: 3 },
+	{ text: 'always', value: 4 }
 ];
 
 export const categoryColors: CategoryColor = {

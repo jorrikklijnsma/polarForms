@@ -20,6 +20,12 @@
 	"cta": "Start",
 	"continue": "Verder gaan",
 	"go-to-chart": "Ga naar de grafiek",
+	"answer-labels": {
+		"never": "Bijna nooit",
+		"sometimes": "Soms",
+		"often": "Vaak",
+		"always": "Bijna altijd"
+	},
 	"all_questions": {
 		"1": "Als ik het niet eens ben met mijn gesprekspartner, kan ik mijn mening voor me te houden",
 		"2": "In gesprekken, houd ik mijn eigen mening voor me",

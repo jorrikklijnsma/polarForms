@@ -1,9 +1,15 @@
 import i18n from 'sveltekit-i18n';
+import lang from './lang.json';
 
 export const defaultLocale = 'en';
 
 /** @type {import('sveltekit-i18n').Config} */
 const config = {
+	fallbackLocale: 'en',
+	translations: {
+		en: { lang },
+		nl: { lang }
+	},
 	loaders: [
 		{
 			locale: 'en',
@@ -13,7 +19,7 @@ const config = {
 		{
 			locale: 'en',
 			key: 'home',
-			routes: ['/'], // you can use regexes as well!
+			routes: ['/'],
 			loader: async () => (await import('./en/home.json')).default
 		},
 		{
